@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base
+  title="Privacy Policy · Datawake"
+  description="Datawake's privacy policy. Short version: we don't collect your data. Your browsing stays on your device."
+>
+
+<Nav />
+
+<div class="page-hero">
+  <div class="container">
+    <h1>The short version: we don't collect your data.</h1>
+    <p>Datawake is designed from the ground up so that your browsing history never leaves your device. This policy explains how that works.</p>
+    <p style="font-size:13px; color:var(--text-muted); margin-top:16px;">Last updated: June 2026</p>
+  </div>
+</div>
+
+<div class="container policy-content">
+
+  <h2>What Datawake does</h2>
+  <p>Datawake is a browser extension that detects third-party trackers on the websites you visit and shows you who they are. It runs entirely inside your browser. All data is stored locally using your browser's built-in storage (IndexedDB), with a 90-day rolling window. Nothing is sent to our servers.</p>
+
+  <h2>What we collect</h2>
+  <p><strong>Nothing.</strong> We do not operate any server that receives data from your copy of Datawake. We have no way to see your browsing history, the sites you visit, the trackers you encounter, or anything else you see inside the extension.</p>
+  <p>The extension does not include analytics, crash reporting, or telemetry of any kind.</p>
+
+  <h2>What stays on your device</h2>
+  <p>The following data is stored locally and never leaves your browser:</p>
+  <ul>
+    <li>The list of tracker domains detected on sites you visit</li>
+    <li>The names of companies associated with those trackers</li>
+    <li>Timestamps of detection events (used to build your 90-day summary)</li>
+    <li>Your extension settings (e.g. which sites you've paused)</li>
+  </ul>
+  <p>This data is automatically deleted after 90 days. You can clear it at any time from the Settings section of the dashboard.</p>
+
+  <h2>The data breach check</h2>
+  <p>Datawake's breach check feature lets you enter an email address to see if it has appeared in known data breaches. This check is powered by the Have I Been Pwned (HIBP) API, which is run independently by security researcher Troy Hunt.</p>
+  <p>To use this feature, you provide your own HIBP API key. When you run a check, your email address is sent directly from your browser to the HIBP API. We never see your email address.</p>
+  <p>Your API key is stored locally in your browser's localStorage. It is never transmitted to our servers.</p>
+
+  <h2>Datawake Pro</h2>
+  <p>If you subscribe to Datawake Pro, we process your payment through a third-party payment provider. We receive confirmation that payment was made and a subscription identifier. We do not store your card number, bank details, or billing address.</p>
+  <p>We collect your email address solely to manage your Pro subscription (sending receipts, handling cancellations, and providing support). We do not use it for marketing without your explicit consent.</p>
+
+  <h2>Open source</h2>
+  <p>Datawake's extension code is open source and available on GitHub. You can read exactly what data it accesses, how it stores data locally, and verify that it does not make network requests to our servers.</p>
+
+  <h2>Third-party services</h2>
+  <p>The extension itself uses no third-party services. The website (datawake.app) uses standard web hosting and may log access requests (IP address, browser type, page visited) for security and performance purposes. These logs are not linked to your extension activity.</p>
+
+  <h2>Your rights</h2>
+  <p>Because we do not collect your browsing data, there is nothing for us to delete, export, or correct on our end. If you have a Pro subscription, you can request deletion of your account and email address by contacting <a href="mailto:privacy@datawake.app">privacy@datawake.app</a>. We will process this within 30 days.</p>
+  <p>If you are in the EU or UK, you have rights under GDPR / UK GDPR, including the right to access, correct, and delete personal data we hold. Contact us at the address below to exercise these rights.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If we ever change how Datawake collects or handles data, we will update this policy and notify Pro subscribers by email. The current version is always at datawake.app/privacy.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about privacy? Email us at <a href="mailto:privacy@datawake.app">privacy@datawake.app</a>.</p>
+
+</div>
+
+<Footer />
+
+</Base>

@@ -1,0 +1,763 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base
+  title="Data Breach Check · Datawake"
+  description="Check if your email address has appeared in a known data breach. Free tool powered by HaveIBeenPwned."
+>
+
+<Nav />
+
+<!-- ─── PAGE HERO ─────────────────────────────────────────────────────── -->
+<div class="page-hero">
+  <div class="container">
+    <h1>Has your email been in a breach?</h1>
+    <p>Over 14 billion accounts have been exposed in data breaches. Enter your email to check if any of yours were among them. Powered by HaveIBeenPwned.</p>
+  </div>
+</div>
+
+<!-- ─── TOOL ──────────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="check-layout">
+
+      <!-- Main tool -->
+      <div class="check-main">
+
+        <!-- Step 1: API key setup (shown when no key stored) -->
+        <div id="setup-step" class="check-card" style="display:none;">
+          <div class="setup-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+          </div>
+          <h2>One quick setup</h2>
+          <p>This check uses the HaveIBeenPwned (HIBP) API. You need a free API key, which gets stored in your browser. Your email goes directly to HIBP. We never see it.</p>
+
+          <ol class="setup-steps">
+            <li>
+              <span class="setup-num">1</span>
+              <div>
+                <strong>Get a free HIBP API key</strong>
+                <p>Go to <a href="https://haveibeenpwned.com/API/Key" target="_blank" rel="noopener" class="setup-link">haveibeenpwned.com/API/Key</a> and follow the steps. The key is free for personal use.</p>
+              </div>
+            </li>
+            <li>
+              <span class="setup-num">2</span>
+              <div>
+                <strong>Paste your key below</strong>
+                <p>It stays in your browser's localStorage. You only need to do this once.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="key-input-group">
+            <input
+              type="text"
+              id="api-key-input"
+              placeholder="Paste your HIBP API key here"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button id="save-key-btn" class="btn btn-primary">Save key</button>
+          </div>
+          <p id="key-error" class="field-error" style="display:none;"></p>
+        </div>
+
+        <!-- Main check form (shown when key exists) -->
+        <div id="check-step" class="check-card" style="display:none;">
+          <h2>Check an email address</h2>
+
+          <div class="check-form-row">
+            <input
+              type="email"
+              id="email-input"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+            <button id="check-btn" class="btn btn-primary">
+              <span id="check-btn-text">Check</span>
+              <svg id="check-spinner" class="spinner" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </button>
+          </div>
+          <p id="check-error" class="field-error" style="display:none;"></p>
+
+          <p class="check-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Your email goes directly to HaveIBeenPwned. We never see it.
+            <button id="change-key-btn" class="text-btn">Change API key</button>
+          </p>
+        </div>
+
+        <!-- Results area -->
+        <div id="results" style="display:none;">
+          <!-- Clean result -->
+          <div id="result-clean" class="result-clean" style="display:none;">
+            <div class="result-clean-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Good news. No breaches found.</h3>
+            <p id="result-clean-email"></p>
+          </div>
+
+          <!-- Breaches found -->
+          <div id="result-breaches" style="display:none;">
+            <div class="result-breaches-header">
+              <div class="result-breaches-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+              <div>
+                <h3 id="breach-count-heading"></h3>
+                <p id="breach-count-email" class="result-sub"></p>
+              </div>
+            </div>
+            <div id="breach-list" class="breach-list"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="check-aside">
+        <div class="aside-block">
+          <h3>About this check</h3>
+          <p>This tool queries <strong>HaveIBeenPwned</strong>, a database of known data breaches maintained by security researcher Troy Hunt. It covers billions of compromised accounts across thousands of breaches.</p>
+        </div>
+        <div class="aside-block">
+          <h3>Your privacy</h3>
+          <ul class="aside-list">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Your email goes directly to HIBP, not to Datawake
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+              Your API key is stored in your browser only
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              This page is open source, you can verify it
+            </li>
+          </ul>
+        </div>
+        <div class="aside-block aside-cta">
+          <h3>Get alerts when new breaches appear</h3>
+          <p>Datawake Pro watches for new breaches that include your email and lets you know as soon as one is found.</p>
+          <a href="/pricing" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:12px;">See Pro</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<Footer />
+
+</Base>
+
+<style>
+/* ── Layout ──────────────────────────────────────────────── */
+.check-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .check-layout {
+    grid-template-columns: 1fr;
+  }
+  .check-aside { order: 2; }
+}
+
+/* ── Card ────────────────────────────────────────────────── */
+.check-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+}
+
+.check-card h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.check-card > p {
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* ── Setup step ──────────────────────────────────────────── */
+.setup-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(91,214,165,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--accent-dark);
+}
+
+.setup-icon svg { width: 26px; height: 26px; }
+
+.setup-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.setup-steps li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.setup-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.setup-steps li strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.setup-steps li p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.setup-link {
+  color: var(--accent-dark);
+  font-weight: 500;
+}
+
+.key-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.key-input-group input {
+  flex: 1;
+  height: 46px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-family: 'Inter', monospace;
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color 0.15s;
+  letter-spacing: 0.02em;
+}
+
+.key-input-group input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ── Check form ──────────────────────────────────────────── */
+.check-form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.check-form-row input[type="email"] {
+  flex: 1;
+  height: 50px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 0 18px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color 0.15s;
+}
+
+.check-form-row input[type="email"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.check-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.check-note svg { flex-shrink: 0; color: var(--accent-dark); }
+
+.text-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent-dark);
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+.field-error {
+  font-size: 13.5px;
+  color: #dc2626;
+  margin-top: 8px;
+}
+
+/* ── Spinner ─────────────────────────────────────────────── */
+.spinner {
+  width: 18px;
+  height: 18px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Result: clean ───────────────────────────────────────── */
+.result-clean {
+  text-align: center;
+  padding: 48px 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.result-clean-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(91,214,165,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--accent-dark);
+}
+
+.result-clean-icon svg { width: 32px; height: 32px; }
+
+.result-clean h3 {
+  font-size: 22px;
+  margin: 0 0 8px;
+  color: var(--text);
+}
+
+.result-clean p {
+  color: var(--text-soft);
+  font-size: 15px;
+}
+
+/* ── Result: breaches ────────────────────────────────────── */
+.result-breaches-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(239,68,68,0.06);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.result-breaches-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(239,68,68,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc2626;
+}
+
+.result-breaches-icon svg { width: 22px; height: 22px; }
+
+.result-breaches-header h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.result-sub { color: var(--text-soft); font-size: 14px; margin: 0; }
+
+.breach-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Aside ───────────────────────────────────────────────── */
+.aside-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.aside-block h3 {
+  font-size: 15px;
+  margin: 0 0 10px;
+  color: var(--text);
+}
+
+.aside-block p {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.aside-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.aside-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.aside-list li svg { flex-shrink: 0; color: var(--accent-dark); margin-top: 2px; }
+
+.aside-cta { background: rgba(91,214,165,0.06); border-color: rgba(91,214,165,0.25); }
+.aside-cta h3 { color: var(--navy); }
+</style>
+
+<script>
+// ── State ────────────────────────────────────────────────────────────────
+const KEY_STORAGE = 'dw_hibp_key';
+
+function getKey(): string | null {
+  return localStorage.getItem(KEY_STORAGE);
+}
+
+function saveKey(key: string): void {
+  localStorage.setItem(KEY_STORAGE, key);
+}
+
+function clearKey(): void {
+  localStorage.removeItem(KEY_STORAGE);
+}
+
+// ── DOM refs ─────────────────────────────────────────────────────────────
+const setupStep     = document.getElementById('setup-step')!;
+const checkStep     = document.getElementById('check-step')!;
+const apiKeyInput   = document.getElementById('api-key-input') as HTMLInputElement;
+const saveKeyBtn    = document.getElementById('save-key-btn')!;
+const keyError      = document.getElementById('key-error')!;
+const emailInput    = document.getElementById('email-input') as HTMLInputElement;
+const checkBtn      = document.getElementById('check-btn')!;
+const checkBtnText  = document.getElementById('check-btn-text')!;
+const checkSpinner  = document.getElementById('check-spinner')!;
+const checkError    = document.getElementById('check-error')!;
+const changeKeyBtn  = document.getElementById('change-key-btn')!;
+const results       = document.getElementById('results')!;
+const resultClean   = document.getElementById('result-clean')!;
+const resultCleanEmail = document.getElementById('result-clean-email')!;
+const resultBreaches = document.getElementById('result-breaches')!;
+const breachCountHeading = document.getElementById('breach-count-heading')!;
+const breachCountEmail = document.getElementById('breach-count-email')!;
+const breachList    = document.getElementById('breach-list')!;
+
+// ── Init ─────────────────────────────────────────────────────────────────
+function init() {
+  const stored = getKey();
+  if (stored) {
+    setupStep.style.display = 'none';
+    checkStep.style.display = 'block';
+  } else {
+    setupStep.style.display = 'block';
+    checkStep.style.display = 'none';
+  }
+  results.style.display = 'none';
+}
+
+init();
+
+// ── Save API key ──────────────────────────────────────────────────────────
+saveKeyBtn.addEventListener('click', () => {
+  const key = apiKeyInput.value.trim();
+  if (!key) {
+    showError(keyError, 'Please paste your HIBP API key.');
+    return;
+  }
+  if (key.length < 20) {
+    showError(keyError, 'That doesn\'t look like a valid API key. Make sure you copied the whole thing.');
+    return;
+  }
+  clearError(keyError);
+  saveKey(key);
+  init();
+});
+
+apiKeyInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') saveKeyBtn.click();
+});
+
+// ── Change key ────────────────────────────────────────────────────────────
+changeKeyBtn.addEventListener('click', () => {
+  clearKey();
+  apiKeyInput.value = '';
+  init();
+});
+
+// ── Run check ─────────────────────────────────────────────────────────────
+checkBtn.addEventListener('click', runCheck);
+emailInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') runCheck();
+});
+
+async function runCheck() {
+  const email = emailInput.value.trim();
+  const key   = getKey();
+
+  if (!email) {
+    showError(checkError, 'Please enter an email address.');
+    return;
+  }
+  if (!isValidEmail(email)) {
+    showError(checkError, 'That doesn\'t look like a valid email address.');
+    return;
+  }
+  if (!key) {
+    init();
+    return;
+  }
+
+  clearError(checkError);
+  setLoading(true);
+  results.style.display = 'none';
+
+  try {
+    const res = await fetch(
+      `https://haveibeenpwned.com/api/v3/breachedaccount/${encodeURIComponent(email)}?truncateResponse=false`,
+      {
+        headers: {
+          'hibp-api-key': key,
+          'User-Agent': 'Datawake-BreachCheck',
+        },
+      }
+    );
+
+    if (res.status === 401) {
+      clearKey();
+      showError(checkError, 'Your API key was rejected by HaveIBeenPwned. Please re-enter it.');
+      init();
+      return;
+    }
+
+    if (res.status === 404) {
+      showClean(email);
+      return;
+    }
+
+    if (!res.ok) {
+      throw new Error(`HIBP returned status ${res.status}`);
+    }
+
+    const breaches = await res.json() as Breach[];
+    showBreaches(email, breaches);
+
+  } catch (err) {
+    showError(checkError, 'Something went wrong reaching HaveIBeenPwned. Check your internet connection and try again.');
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+}
+
+// ── Display helpers ────────────────────────────────────────────────────────
+function showClean(email: string) {
+  results.style.display = 'block';
+  resultClean.style.display = 'block';
+  resultBreaches.style.display = 'none';
+  resultCleanEmail.textContent = `${email} was not found in any known breach. That's good news, but it's worth checking again from time to time.`;
+}
+
+function showBreaches(email: string, breaches: Breach[]) {
+  results.style.display = 'block';
+  resultClean.style.display = 'none';
+  resultBreaches.style.display = 'block';
+
+  const count = breaches.length;
+  breachCountHeading.textContent = `Found in ${count} breach${count === 1 ? '' : 'es'}`;
+  breachCountEmail.textContent = email;
+
+  breachList.innerHTML = '';
+  breaches
+    .sort((a, b) => new Date(b.BreachDate).getTime() - new Date(a.BreachDate).getTime())
+    .forEach(breach => {
+      breachList.appendChild(buildBreachCard(breach));
+    });
+}
+
+interface Breach {
+  Name: string;
+  Title: string;
+  BreachDate: string;
+  Description: string;
+  DataClasses: string[];
+  PwnCount: number;
+  IsVerified: boolean;
+}
+
+function buildBreachCard(breach: Breach): HTMLElement {
+  const card = document.createElement('div');
+  card.className = 'breach-card';
+
+  const dateStr = breach.BreachDate
+    ? new Date(breach.BreachDate).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
+    : 'Date unknown';
+
+  const pwnStr = breach.PwnCount
+    ? `${(breach.PwnCount / 1_000_000).toFixed(1)}M accounts`
+    : '';
+
+  const chips = breach.DataClasses
+    .slice(0, 6)
+    .map(dc => `<span class="data-chip">${dc}</span>`)
+    .join('');
+
+  const extra = breach.DataClasses.length > 6
+    ? `<span class="data-chip data-chip--more">+${breach.DataClasses.length - 6} more</span>`
+    : '';
+
+  const unverified = !breach.IsVerified
+    ? `<span class="breach-unverified">Unverified</span>`
+    : '';
+
+  card.innerHTML = `
+    <div class="breach-card-header">
+      <div>
+        <div class="breach-title">${breach.Title} ${unverified}</div>
+        <div class="breach-meta">${dateStr}${pwnStr ? ' · ' + pwnStr : ''}</div>
+      </div>
+    </div>
+    <div class="breach-chips">${chips}${extra}</div>
+  `;
+
+  return card;
+}
+
+function setLoading(loading: boolean) {
+  checkBtnText.textContent = loading ? 'Checking…' : 'Check';
+  checkSpinner.style.display = loading ? 'block' : 'none';
+  (checkBtn as HTMLButtonElement).disabled = loading;
+  (emailInput as HTMLInputElement).disabled = loading;
+}
+
+function showError(el: HTMLElement, msg: string) {
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function clearError(el: HTMLElement) {
+  el.textContent = '';
+  el.style.display = 'none';
+}
+
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+</script>
+
+<style is:global>
+/* ── Breach card ─────────────────────────────────────────── */
+.breach-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.breach-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.breach-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.breach-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.breach-unverified {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  background: rgba(245,158,11,0.12);
+  color: #b45309;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+
+.breach-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.data-chip {
+  font-size: 12px;
+  padding: 3px 10px;
+  background: rgba(15,23,42,0.06);
+  color: var(--text-soft);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.data-chip--more {
+  background: rgba(91,214,165,0.1);
+  color: var(--accent-dark);
+}
+</style>

@@ -1,0 +1,459 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Datawake · Catch sites that track you after you say Reject">
+
+<Nav />
+
+<!-- ─── HERO ─────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner container">
+
+    <div class="hero-text">
+      <h1 class="display">
+        You clicked Reject.<br>They tracked you anyway.
+      </h1>
+
+      <p class="hero-sub">
+        Research shows more than half of websites keep setting tracking cookies after you click Reject. That often breaks privacy law, and almost no one realises.
+        Datawake catches them and shows you every company tracking you, in real time.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="https://github.com/DatawakeApp/datawake" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Add to Chrome, free
+        </a>
+        <a href="https://github.com/DatawakeApp/datawake" class="btn btn-outline btn-lg" target="_blank" rel="noopener">Add to Firefox</a>
+      </div>
+
+      <p class="hero-note">
+        <span>No account needed</span>
+        <span>Works on Chrome, Firefox and Edge</span>
+        <span>Open source</span>
+      </p>
+    </div>
+
+    <div class="hero-visual">
+      <svg viewBox="0 0 540 374" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="6" y="8" width="530" height="360" rx="16" fill="rgba(15,23,42,0.07)"/>
+        <rect x="0" y="0" width="534" height="364" rx="16" fill="#F8FAFC"/>
+        <rect x="0" y="0" width="534" height="44" rx="16" fill="#EDF1F7"/>
+        <rect x="0" y="30" width="534" height="14" fill="#EDF1F7"/>
+        <circle cx="22" cy="22" r="5.5" fill="#FF5F57"/>
+        <circle cx="40" cy="22" r="5.5" fill="#FEBC2E"/>
+        <circle cx="58" cy="22" r="5.5" fill="#28C840"/>
+        <rect x="80" y="11" width="304" height="22" rx="11" fill="white"/>
+        <text x="102" y="26" fill="#94A3B8" font-size="11" font-family="Inter, sans-serif">nytimes.com</text>
+        <rect x="0" y="44" width="334" height="36" fill="white"/>
+        <rect x="16" y="52" width="52" height="20" rx="4" fill="#E2E8F0"/>
+        <rect x="84" y="58" width="40" height="7" rx="3" fill="#EDF1F7"/>
+        <rect x="130" y="58" width="40" height="7" rx="3" fill="#EDF1F7"/>
+        <rect x="176" y="58" width="40" height="7" rx="3" fill="#EDF1F7"/>
+        <rect x="0" y="80" width="334" height="110" fill="#E8EDF4"/>
+        <rect x="130" y="108" width="74" height="52" rx="8" fill="#D4DCE8"/>
+        <circle cx="152" cy="122" r="8" fill="#BCC7D4"/>
+        <path d="M130 132 L162 112 L182 124 L194 116 L214 132Z" fill="#C4CEDB"/>
+        <rect x="16" y="202" width="300" height="16" rx="4" fill="#CBD5E1"/>
+        <rect x="16" y="224" width="260" height="16" rx="4" fill="#CBD5E1"/>
+        <rect x="16" y="256" width="300" height="9" rx="3" fill="#E8EDF2"/>
+        <rect x="16" y="271" width="280" height="9" rx="3" fill="#E8EDF2"/>
+        <rect x="16" y="286" width="290" height="9" rx="3" fill="#E8EDF2"/>
+        <rect x="16" y="301" width="220" height="9" rx="3" fill="#E8EDF2"/>
+        <rect x="16" y="316" width="270" height="9" rx="3" fill="#E8EDF2"/>
+        <rect x="16" y="331" width="240" height="9" rx="3" fill="#E8EDF2"/>
+        <rect x="336" y="48" width="192" height="308" rx="13" fill="#0a0d13"/>
+        <rect x="336" y="48" width="192" height="44" rx="13" fill="#11151d"/>
+        <rect x="336" y="78" width="192" height="14" fill="#11151d"/>
+        <text x="354" y="76" fill="#eef2f7" font-size="12.5" font-weight="700" font-family="Inter, sans-serif">Datawake</text>
+        <circle cx="509" cy="71" r="7" fill="#5bd6a5" opacity="0.12"/>
+        <circle cx="509" cy="71" r="4" fill="#5bd6a5"/>
+        <line x1="336" y1="92" x2="528" y2="92" stroke="#222a38" stroke-width="1"/>
+        <text x="350" y="108" fill="#5bd6a5" font-size="10" font-weight="700" font-family="Inter, sans-serif">This site</text>
+        <text x="407" y="108" fill="#7e8a99" font-size="10" font-family="Inter, sans-serif">Across the web</text>
+        <line x1="345" y1="92" x2="393" y2="92" stroke="#5bd6a5" stroke-width="2"/>
+        <text x="350" y="133" fill="#eef2f7" font-size="19" font-weight="800" font-family="Inter, sans-serif">5</text>
+        <text x="372" y="129" fill="#c3ccd8" font-size="10.5" font-family="Inter, sans-serif">companies</text>
+        <text x="372" y="141" fill="#c3ccd8" font-size="10.5" font-family="Inter, sans-serif">tracking you here</text>
+        <g class="tr-row" style="--i:0">
+          <rect x="342" y="150" width="180" height="34" rx="6" fill="#161b25"/>
+          <rect x="342" y="150" width="3" height="34" rx="1.5" fill="#4285f4"/>
+          <text x="354" y="164" fill="#eef2f7" font-size="10.5" font-weight="700" font-family="Inter, sans-serif">Google Analytics</text>
+          <text x="354" y="177" fill="#7e8a99" font-size="8.5" font-family="Inter, sans-serif">Analytics</text>
+          <rect x="476" y="156" width="32" height="14" rx="7" fill="rgba(239,68,68,0.15)"/>
+          <text x="492" y="166" fill="#ef4444" font-size="7" font-weight="700" text-anchor="middle" font-family="Inter, sans-serif">HIGH</text>
+        </g>
+        <g class="tr-row" style="--i:1">
+          <rect x="342" y="190" width="180" height="34" rx="6" fill="#161b25"/>
+          <rect x="342" y="190" width="3" height="34" rx="1.5" fill="#1877f2"/>
+          <text x="354" y="204" fill="#eef2f7" font-size="10.5" font-weight="700" font-family="Inter, sans-serif">Meta Pixel</text>
+          <text x="354" y="217" fill="#7e8a99" font-size="8.5" font-family="Inter, sans-serif">Advertising</text>
+          <rect x="476" y="196" width="32" height="14" rx="7" fill="rgba(239,68,68,0.15)"/>
+          <text x="492" y="206" fill="#ef4444" font-size="7" font-weight="700" text-anchor="middle" font-family="Inter, sans-serif">HIGH</text>
+        </g>
+        <g class="tr-row" style="--i:2">
+          <rect x="342" y="230" width="180" height="34" rx="6" fill="#161b25"/>
+          <rect x="342" y="230" width="3" height="34" rx="1.5" fill="#34a853"/>
+          <text x="354" y="244" fill="#eef2f7" font-size="10.5" font-weight="700" font-family="Inter, sans-serif">DoubleClick</text>
+          <text x="354" y="257" fill="#7e8a99" font-size="8.5" font-family="Inter, sans-serif">Advertising</text>
+          <rect x="476" y="236" width="32" height="14" rx="7" fill="rgba(239,68,68,0.15)"/>
+          <text x="492" y="246" fill="#ef4444" font-size="7" font-weight="700" text-anchor="middle" font-family="Inter, sans-serif">HIGH</text>
+        </g>
+        <g class="tr-row" style="--i:3">
+          <rect x="342" y="270" width="180" height="34" rx="6" fill="#161b25"/>
+          <rect x="342" y="270" width="3" height="34" rx="1.5" fill="#ff3b30"/>
+          <text x="354" y="284" fill="#eef2f7" font-size="10.5" font-weight="700" font-family="Inter, sans-serif">Hotjar</text>
+          <text x="354" y="297" fill="#7e8a99" font-size="8.5" font-family="Inter, sans-serif">Session recording</text>
+          <rect x="473" y="276" width="35" height="14" rx="7" fill="rgba(245,158,11,0.15)"/>
+          <text x="490" y="286" fill="#f59e0b" font-size="7" font-weight="700" text-anchor="middle" font-family="Inter, sans-serif">MED</text>
+        </g>
+        <g class="tr-row" style="--i:4">
+          <rect x="342" y="310" width="180" height="34" rx="6" fill="#161b25"/>
+          <rect x="342" y="310" width="3" height="34" rx="1.5" fill="#0a66c2"/>
+          <text x="354" y="324" fill="#eef2f7" font-size="10.5" font-weight="700" font-family="Inter, sans-serif">LinkedIn Insight</text>
+          <text x="354" y="337" fill="#7e8a99" font-size="8.5" font-family="Inter, sans-serif">Advertising</text>
+          <rect x="473" y="316" width="35" height="14" rx="7" fill="rgba(245,158,11,0.15)"/>
+          <text x="490" y="326" fill="#f59e0b" font-size="7" font-weight="700" text-anchor="middle" font-family="Inter, sans-serif">MED</text>
+        </g>
+        <line x1="336" y1="348" x2="528" y2="348" stroke="#222a38" stroke-width="1"/>
+        <text x="432" y="358" fill="#5bd6a5" font-size="8.5" text-anchor="middle" font-family="Inter, sans-serif">Open dashboard →</text>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─── PROBLEM ─────────────────────────────────────────────────────── -->
+<section class="section" id="problem">
+  <div class="container problem-inner">
+
+    <div class="problem-text reveal">
+      <h2 class="section-title">Most people have no idea what happens after they click Reject.</h2>
+      <p style="font-size:17px; color:var(--text-soft); line-height:1.75; margin-bottom:20px;">
+        Cookie banners are supposed to give you a choice. In practice, many sites load advertising scripts, analytics trackers, and data broker pixels regardless of what you clicked, often before the page has even finished loading.
+      </p>
+      <p style="font-size:17px; color:var(--text-soft); line-height:1.75; margin-bottom:32px;">
+        Datawake monitors every third-party connection your browser makes, compares cookies before and after you reject a banner, and surfaces exactly which companies are active on each page, and what they do with your data.
+      </p>
+      <p style="font-size:15px; color:var(--text-soft); line-height:1.7; padding:20px 24px; background:rgba(91,214,165,0.07); border-left:3px solid var(--accent); border-radius:0 10px 10px 0; margin-bottom:32px;">
+        Awareness is the first step. Datawake gives you the evidence. What you do with it is up to you.
+      </p>
+      <a href="/features" class="btn btn-outline">
+        See everything Datawake shows you
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="problem-visual reveal" style="--delay:120ms">
+      <div style="font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.08em;">What Datawake shows you on a typical news site</div>
+
+      <div class="tracker-row">
+        <span class="tracker-dot" style="background:#4285f4"></span>
+        <div class="tracker-info">
+          <div class="tracker-name">Google Analytics</div>
+          <div class="tracker-cat">Tracks your reading time and clicks</div>
+        </div>
+        <span class="tracker-tag high">HIGH</span>
+      </div>
+      <div class="tracker-row">
+        <span class="tracker-dot" style="background:#1877f2"></span>
+        <div class="tracker-info">
+          <div class="tracker-name">Meta Pixel</div>
+          <div class="tracker-cat">Links your visit to your Facebook profile</div>
+        </div>
+        <span class="tracker-tag high">HIGH</span>
+      </div>
+      <div class="tracker-row">
+        <span class="tracker-dot" style="background:#34a853"></span>
+        <div class="tracker-info">
+          <div class="tracker-name">DoubleClick</div>
+          <div class="tracker-cat">Builds an advertising profile for Google</div>
+        </div>
+        <span class="tracker-tag high">HIGH</span>
+      </div>
+      <div class="tracker-row">
+        <span class="tracker-dot" style="background:#ff6900"></span>
+        <div class="tracker-info">
+          <div class="tracker-name">Hotjar</div>
+          <div class="tracker-cat">Records your mouse movements and scrolling</div>
+        </div>
+        <span class="tracker-tag med">MED</span>
+      </div>
+      <div class="tracker-row">
+        <span class="tracker-dot" style="background:#0a66c2"></span>
+        <div class="tracker-info">
+          <div class="tracker-name">LinkedIn Insight</div>
+          <div class="tracker-cat">Links your visit to your LinkedIn account</div>
+        </div>
+        <span class="tracker-tag med">MED</span>
+      </div>
+      <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border); font-size:13px; color:var(--text-muted);">
+        + 27 more trackers on this page
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─────────────────────────────────────────────────── -->
+<section class="section section-alt" id="how">
+  <div class="container how-inner">
+    <div class="how-header">
+      <h2 class="section-title" style="margin:0 auto 16px; max-width:480px;">Up and running in 60 seconds</h2>
+      <p class="section-sub" style="margin:0 auto;">No configuration. No account. No complicated setup. You install it, and it works.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal" style="--delay:0ms">
+        <div class="step-num">1</div>
+        <h3>Install in one click</h3>
+        <p>Find Datawake in the Chrome Web Store or Firefox Add-ons and click Add. No email address, no account, nothing to configure.</p>
+      </div>
+      <div class="step reveal" style="--delay:100ms">
+        <div class="step-num">2</div>
+        <h3>Browse the way you always do</h3>
+        <p>When a site asks to track you, Datawake says no for you. Then it checks whether the site listened. Nothing to set up.</p>
+      </div>
+      <div class="step reveal" style="--delay:200ms">
+        <div class="step-num">3</div>
+        <h3>Click to see who's there</h3>
+        <p>Tap the Datawake icon to see which companies are active on the current page, and your full picture across the last 90 days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES TEASER ──────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+
+      <div class="reveal">
+        <h2 class="section-title">Real-time tracking, across every page you visit</h2>
+        <p style="font-size:17px; color:var(--text-soft); line-height:1.75; margin-bottom:28px;">
+          Datawake identifies every third-party company loading on a page the moment you land on it. It names the company, explains what they collect, shows whether they sell your data, and flags the ones that appear across dozens of other sites.
+        </p>
+
+        <ul class="check-list" style="margin-bottom:32px;">
+          <li>
+            <span class="ic-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg></span>
+            Catches sites that track you after you click Reject
+          </li>
+          <li>
+            <span class="ic-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg></span>
+            Alerts when session recording tools like Hotjar are active
+          </li>
+          <li>
+            <span class="ic-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg></span>
+            Know which companies sell your data vs use it themselves
+          </li>
+          <li>
+            <span class="ic-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg></span>
+            90-day summary of your full digital footprint
+          </li>
+        </ul>
+
+        <a href="/features" class="btn btn-primary">
+          Explore all features
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="mini-popup reveal" style="--delay:80ms">
+        <div class="mp-header">
+          <span class="mp-title">
+            <svg width="13" height="13" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <circle cx="16" cy="16" r="7" fill="none" stroke="#5bd6a5" stroke-width="2.2"/>
+              <circle cx="16" cy="16" r="3" fill="#5bd6a5"/>
+              <line x1="7" y1="16" x2="11" y2="16" stroke="#5bd6a5" stroke-width="2" stroke-linecap="round"/>
+              <line x1="21" y1="16" x2="25" y2="16" stroke="#5bd6a5" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Datawake
+          </span>
+          <span class="mp-live" aria-label="active"></span>
+        </div>
+        <div class="mp-count">
+          <span class="mp-num">5</span>
+          <span class="mp-lbl">companies tracking you here</span>
+        </div>
+        <div class="mp-divider"></div>
+        <div class="mp-row"><span class="mp-dot" style="background:#4285f4"></span><div class="mp-info"><div class="mp-name">Google Analytics</div><div class="mp-cat">Analytics</div></div><span class="mp-tag mp-high">HIGH</span></div>
+        <div class="mp-row"><span class="mp-dot" style="background:#1877f2"></span><div class="mp-info"><div class="mp-name">Meta Pixel</div><div class="mp-cat">Advertising</div></div><span class="mp-tag mp-high">HIGH</span></div>
+        <div class="mp-row"><span class="mp-dot" style="background:#34a853"></span><div class="mp-info"><div class="mp-name">DoubleClick</div><div class="mp-cat">Advertising</div></div><span class="mp-tag mp-high">HIGH</span></div>
+        <div class="mp-row"><span class="mp-dot" style="background:#ff6900"></span><div class="mp-info"><div class="mp-name">Hotjar</div><div class="mp-cat">Session recording</div></div><span class="mp-tag mp-med">MED</span></div>
+        <div class="mp-row"><span class="mp-dot" style="background:#0a66c2"></span><div class="mp-info"><div class="mp-name">LinkedIn Insight</div><div class="mp-cat">Advertising</div></div><span class="mp-tag mp-med">MED</span></div>
+        <div class="mp-footer">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          0 bytes sent to Datawake
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── BREACH CHECK CALLOUT ─────────────────────────────────────────── -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="max-width:680px; margin:0 auto; text-align:center;">
+      <h2 class="section-title" style="margin-bottom:12px;">Has your email been in a breach?</h2>
+      <p style="font-size:17px; color:var(--text-soft); line-height:1.75; margin-bottom:32px;">
+        Billions of accounts have been exposed in data breaches. Check if your email is one of them using our free lookup, powered by HaveIBeenPwned, the industry standard.
+      </p>
+      <a href="/check" class="btn btn-primary btn-lg">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Check my email
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING TEASER ───────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container" style="text-align:center;">
+    <h2 class="section-title" style="margin-bottom:12px;">Free forever, with a Pro tier for those who want more</h2>
+    <p class="section-sub" style="margin:0 auto 40px;">Core features are always free. No trial, no credit card. Pro tier with deeper tools is coming soon.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="https://github.com/DatawakeApp/datawake" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Install free</a>
+      <a href="/pricing" class="btn btn-outline btn-lg">Compare plans</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GUARANTEE ─────────────────────────────────────────────────────── -->
+<section class="section guarantee">
+  <div class="container guarantee-inner">
+
+    <div class="guarantee-header reveal">
+      <h2 class="section-title">Privacy tools should be trustworthy by design, not by promise</h2>
+      <p class="section-sub" style="margin:0 auto;">
+        Everything Datawake records stays on your device. The code is open source. There is no account, no telemetry, and nothing sent to our servers.
+      </p>
+    </div>
+
+    <div class="guarantee-pillars">
+      <div class="pillar reveal" style="--delay:0ms">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <h3>Your data stays on your device</h3>
+        <p>Everything Datawake records is stored in your browser's local storage. We have no server-side access to it and never will.</p>
+      </div>
+      <div class="pillar reveal" style="--delay:80ms">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <h3>No account, ever</h3>
+        <p>No sign-up, no email address, nothing to configure. Install the extension and it works immediately.</p>
+      </div>
+      <div class="pillar reveal" style="--delay:160ms">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>Open source</h3>
+        <p>The full source code is on GitHub. You can read exactly what the extension does. No need to take our word for it.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<Footer />
+
+<style>
+/* ── Hero SVG row fade-in ── */
+.tr-row {
+  opacity: 0;
+  animation: trIn 0.4s ease both;
+  animation-delay: calc(var(--i) * 110ms + 600ms);
+}
+@keyframes trIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tr-row { animation: none; opacity: 1; }
+}
+
+/* ── Mini popup preview ── */
+.mini-popup {
+  background: #0a0d13;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.16), 0 4px 16px rgba(0,0,0,0.1);
+}
+.mp-header {
+  background: #11151d;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #1e2e45;
+}
+.mp-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  color: #eef2f7;
+  letter-spacing: -0.02em;
+}
+.mp-live {
+  width: 8px;
+  height: 8px;
+  background: #5bd6a5;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(91,214,165,0.2);
+}
+.mp-count {
+  padding: 14px 16px 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.mp-num {
+  font-size: 30px;
+  font-weight: 800;
+  color: #eef2f7;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.mp-lbl { font-size: 12px; color: #7e8a99; }
+.mp-divider { height: 1px; background: #1e2e45; margin: 0 16px 6px; }
+.mp-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+}
+.mp-dot { width: 3px; height: 34px; border-radius: 2px; flex: 0 0 3px; }
+.mp-info { flex: 1; min-width: 0; }
+.mp-name { font-size: 12.5px; font-weight: 600; color: #eef2f7; }
+.mp-cat  { font-size: 10.5px; color: #7e8a99; margin-top: 2px; }
+.mp-tag {
+  font-size: 8px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  flex: 0 0 auto;
+  letter-spacing: 0.03em;
+}
+.mp-high { background: rgba(239,68,68,0.15); color: #ef4444; }
+.mp-med  { background: rgba(245,158,11,0.15); color: #f59e0b; }
+.mp-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px 14px;
+  border-top: 1px solid #1e2e45;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #7e8a99;
+}
+</style>
+
+</Base>
