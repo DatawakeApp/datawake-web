@@ -1,17 +1,15 @@
 ---
+import { RELEASES } from '../lib/links';
 ---
 <footer class="footer">
 
   <div class="footer-waitlist">
     <div class="container fw-inner">
       <div class="fw-text">
-        <p class="fw-heading">Get early access to Pro</p>
-        <p class="fw-sub">Deeper tools, breach alerts, and weekly privacy digest. Launching soon.</p>
+        <p class="fw-heading">Datawake Pro is coming</p>
+        <p class="fw-sub">Deeper tools, breach alerts and a weekly privacy digest. New releases are announced on GitHub.</p>
       </div>
-      <form class="fw-form" id="waitlist-form" novalidate>
-        <input type="email" name="email" class="fw-input" placeholder="your@email.com" autocomplete="email" required />
-        <button type="submit" class="fw-btn">Join waitlist</button>
-      </form>
+      <a class="fw-btn" href={RELEASES} target="_blank" rel="noopener">Follow on GitHub</a>
     </div>
   </div>
 
@@ -187,6 +185,8 @@
   border-color: var(--accent);
 }
 .fw-btn {
+  display: inline-block;
+  text-decoration: none;
   padding: 11px 20px;
   background: var(--accent);
   color: var(--navy);
@@ -224,13 +224,3 @@
 }
 </style>
 
-<script>
-const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
-form?.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = (form.elements.namedItem('email') as HTMLInputElement)?.value;
-  if (!email) return;
-  window.location.href = `mailto:hello@datawake.app?subject=Pro%20waitlist&body=Please%20add%20me%3A%20${encodeURIComponent(email)}`;
-  form.closest('.footer-waitlist')?.classList.add('fw-sent');
-});
-</script>

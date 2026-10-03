@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { INSTALL_CHROME } from '../lib/links';
 ---
 <Base
   title="Features · Datawake"
@@ -47,7 +48,7 @@ import Footer from '../components/Footer.astro';
               </div>
               <div>
                 <div class="feat-item-name">Company names, not domain names</div>
-                <div class="feat-item-desc">You see "Google Analytics" not "cdn.doubleclick.net". The actual company, in plain language.</div>
+                <div class="feat-item-desc">You see "Google (Alphabet)", not "doubleclick.net". The actual company, in plain language.</div>
               </div>
             </div>
             <div class="feat-item cat-blue">
@@ -56,7 +57,7 @@ import Footer from '../components/Footer.astro';
               </div>
               <div>
                 <div class="feat-item-name">What each tracker actually does</div>
-                <div class="feat-item-desc">Analytics, advertising, social tracking, session recording. Each tracker is categorised so you know what kind of data it collects.</div>
+                <div class="feat-item-desc">Showing you ads, watching what you do, recording your screen or linking to your social accounts, with a high, medium or low risk level.</div>
               </div>
             </div>
             <div class="feat-item cat-blue">
@@ -64,69 +65,15 @@ import Footer from '../components/Footer.astro';
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
               </div>
               <div>
-                <div class="feat-item-name">Impact level</div>
-                <div class="feat-item-desc">HIGH, MEDIUM, or LOW based on how much data a tracker collects. Helps you spot the ones that matter.</div>
+                <div class="feat-item-name">Who is active right now</div>
+                <div class="feat-item-desc">The popup updates live and marks the companies sending data at this moment, so you see tracking as it happens.</div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="panel-right">
-          <div class="panel-preview cat-blue">
-            <div class="pp-bar">
-              <span class="pp-title">Datawake</span>
-              <span class="pp-dot"></span>
-            </div>
-            <div class="pp-count">
-              <span class="pp-num">5</span>
-              <span class="pp-label">trackers on this page</span>
-            </div>
-            <div class="pp-divider"></div>
-            <div class="pp-tracker">
-              <span class="pp-col" style="background:#4285f4"></span>
-              <div class="pp-tinfo">
-                <div class="pp-tname">Google Analytics</div>
-                <div class="pp-tcat">Analytics</div>
-              </div>
-              <span class="pp-badge pp-high">HIGH</span>
-            </div>
-            <div class="pp-tracker">
-              <span class="pp-col" style="background:#1877f2"></span>
-              <div class="pp-tinfo">
-                <div class="pp-tname">Meta Pixel</div>
-                <div class="pp-tcat">Advertising</div>
-              </div>
-              <span class="pp-badge pp-high">HIGH</span>
-            </div>
-            <div class="pp-tracker">
-              <span class="pp-col" style="background:#34a853"></span>
-              <div class="pp-tinfo">
-                <div class="pp-tname">DoubleClick</div>
-                <div class="pp-tcat">Advertising</div>
-              </div>
-              <span class="pp-badge pp-high">HIGH</span>
-            </div>
-            <div class="pp-tracker">
-              <span class="pp-col" style="background:#ff6900"></span>
-              <div class="pp-tinfo">
-                <div class="pp-tname">Hotjar</div>
-                <div class="pp-tcat">Session recording</div>
-              </div>
-              <span class="pp-badge pp-med">MED</span>
-            </div>
-            <div class="pp-tracker">
-              <span class="pp-col" style="background:#0a66c2"></span>
-              <div class="pp-tinfo">
-                <div class="pp-tname">LinkedIn Insight</div>
-                <div class="pp-tcat">Advertising</div>
-              </div>
-              <span class="pp-badge pp-med">MED</span>
-            </div>
-            <div class="pp-footer">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              0 bytes sent to Datawake
-            </div>
-          </div>
+          <img class="hero-popup" src="/img/popup.png" width="380" height="620" loading="lazy" alt="The Datawake popup: companies tracking you on this site, grouped by what they do, with the ones active now marked." />
         </div>
 
       </div>
@@ -138,7 +85,7 @@ import Footer from '../components/Footer.astro';
 
         <div class="panel-left">
           <h2>Catch sites that track you after you click Reject</h2>
-          <p class="panel-desc">When you decline a cookie banner, Datawake snapshots the cookies present at that moment, waits, and checks again. New tracking cookies from known ad and analytics companies are flagged as violations, with a full receipt.</p>
+          <p class="panel-desc">Datawake declines cookie banners for you, then checks what happens next. New tracking cookies from known ad and analytics companies, and fingerprinting scripts, are flagged as violations with a full receipt.</p>
 
           <div class="feat-list">
             <div class="feat-item cat-red">
@@ -146,8 +93,8 @@ import Footer from '../components/Footer.astro';
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.29 3.86-8.22 14.24A2 2 0 0 0 3.77 21h16.46a2 2 0 0 0 1.7-3.1L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
               </div>
               <div>
-                <div class="feat-item-name">Automatic violation detection</div>
-                <div class="feat-item-desc">After each auto-reject, Datawake diffs the cookie jar and flags any new tracking cookies from known third-party companies. No manual steps needed.</div>
+                <div class="feat-item-name">Says no for you</div>
+                <div class="feat-item-desc">Datawake clicks Reject on cookie banners from the major consent platforms and sends the Global Privacy Control signal. Nothing to set up.</div>
               </div>
             </div>
             <div class="feat-item cat-red">
@@ -155,8 +102,8 @@ import Footer from '../components/Footer.astro';
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
               </div>
               <div>
-                <div class="feat-item-name">Violation receipt with cookie names</div>
-                <div class="feat-item-desc">Each violation shows the exact cookie names, the domain that set them, and a timestamp. A verifiable record, not just a warning.</div>
+                <div class="feat-item-name">Catches tracking after Reject</div>
+                <div class="feat-item-desc">If a site sets tracking cookies or fingerprints your device after you said no, it is logged with the cookie names, the companies and the time.</div>
               </div>
             </div>
             <div class="feat-item cat-red">
@@ -164,8 +111,8 @@ import Footer from '../components/Footer.astro';
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               </div>
               <div>
-                <div class="feat-item-name">Violation history across all sites</div>
-                <div class="feat-item-desc">The Violations dashboard keeps a full log of every site that tracked you after Reject, grouped by date. Your evidence, stored locally.</div>
+                <div class="feat-item-name">Report it, or share it</div>
+                <div class="feat-item-desc">Send a complaint to your data protection authority, written from the evidence, or share a receipt of what you caught.</div>
               </div>
             </div>
             <div class="feat-item cat-red">
@@ -173,8 +120,8 @@ import Footer from '../components/Footer.astro';
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m10.5 8.5 5 3.5-5 3.5z"/></svg>
               </div>
               <div>
-                <div class="feat-item-name">Session recording alerts</div>
-                <div class="feat-item-desc">When tools like Hotjar, Microsoft Clarity, or FullStory are active, Datawake shows a prominent alert. Session recorders capture mouse movements, clicks, and keystrokes, often without telling you.</div>
+                <div class="feat-item-name">Pay to refuse, flagged</div>
+                <div class="feat-item-desc">Some sites only let you refuse tracking if you subscribe. Datawake tells you instead of deciding for you, including when Reject quietly leads to a pay wall.</div>
               </div>
             </div>
           </div>
@@ -345,8 +292,8 @@ import Footer from '../components/Footer.astro';
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
               </div>
               <div>
-                <div class="feat-item-name">Exposure risk score</div>
-                <div class="feat-item-desc">A simple summary based on the brokers that have seen your browsing, so you know roughly how much of your data is in the commercial market.</div>
+                <div class="feat-item-name">Filter by who sells your data</div>
+                <div class="feat-item-desc">See every broker and exchange whose trackers loaded on sites you visited, and which companies share your data for ads.</div>
               </div>
             </div>
             <div class="feat-item cat-amber">
@@ -437,7 +384,7 @@ import Footer from '../components/Footer.astro';
               </div>
               <div>
                 <div class="feat-item-name">Your email goes to HIBP, not to us</div>
-                <div class="feat-item-desc">You use your own free API key. The request goes browser-to-HIBP. Datawake never receives your email address.</div>
+                <div class="feat-item-desc">You use your own Have I Been Pwned API key. The request goes straight from your browser to HIBP. Datawake never receives your email address.</div>
               </div>
             </div>
             <div class="feat-item cat-red">
@@ -537,7 +484,7 @@ import Footer from '../components/Footer.astro';
       Every feature above without a Pro badge is free, forever, with no time limit.
     </p>
     <div class="reveal" style="--delay:120ms; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <a href="https://github.com/DatawakeApp/datawake" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Install free</a>
+      <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Install free</a>
       <a href="/pricing" class="btn btn-outline btn-lg">See pricing</a>
     </div>
   </div>

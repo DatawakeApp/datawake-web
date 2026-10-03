@@ -1694,3 +1694,29 @@ h1, h2, h3, h4 {
     scroll-behavior: auto;
   }
 }
+
+/* ── Real product screenshots ── */
+.hero-popup {
+  display: block;
+  width: 340px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.35);
+}
+.feature-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+.teaser-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+@media (max-width: 900px) { .teaser-grid { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 900px) {
+  .hero-visual { order: 0; }
+  .hero-popup { width: 280px; }
+}

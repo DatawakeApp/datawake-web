@@ -1,4 +1,5 @@
 ---
+import { INSTALL_CHROME } from '../lib/links';
 const path = Astro.url.pathname;
 
 function isActive(href: string): boolean {
@@ -24,7 +25,7 @@ function isActive(href: string): boolean {
       </a>
     </div>
 
-    <a href="https://github.com/DatawakeApp/datawake" class="btn btn-primary nav-cta" target="_blank" rel="noopener">Install free</a>
+    <a href={INSTALL_CHROME} class="btn btn-primary nav-cta" target="_blank" rel="noopener">Install free</a>
 
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
