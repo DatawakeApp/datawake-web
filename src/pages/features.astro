@@ -14,9 +14,9 @@ import { INSTALL_CHROME } from '../lib/links';
 <!-- ─── HERO ──────────────────────────────────────────────────────────── -->
 <div class="feat-hero">
   <div class="container">
-    <h1 class="reveal" style="--delay:60ms">Everything Datawake shows you</h1>
+    <h1 class="reveal" style="--delay:60ms">Everything Datawake does for you</h1>
     <p class="feat-hero-sub reveal" style="--delay:120ms">
-      Tracker detection, violation receipts, data broker exposure, and breach history, all stored locally on your device.
+      Says no to cookie banners for you, catches the sites that keep tracking you, and shows who is tracking you right now. Everything stays on your device.
     </p>
   </div>
 </div>
@@ -141,7 +141,7 @@ import { INSTALL_CHROME } from '../lib/links';
             <div class="pp-section-label">Cookies set after Reject</div>
             <div class="pp-breach-item" style="border-bottom:1px solid rgba(255,255,255,0.05)">
               <div class="pp-breach-name" style="font-family:monospace;font-size:11px">_fbp</div>
-              <div class="pp-breach-date">doubleclick.net</div>
+              <div class="pp-breach-date">facebook.com</div>
             </div>
             <div class="pp-breach-item" style="border-bottom:1px solid rgba(255,255,255,0.05)">
               <div class="pp-breach-name" style="font-family:monospace;font-size:11px">_gcl_au</div>
@@ -357,7 +357,7 @@ import { INSTALL_CHROME } from '../lib/links';
 
         <div class="panel-left">
           <h2>Check if your email has been in a breach</h2>
-          <p class="panel-desc">Billions of credentials have been exposed in publicly known data breaches. This tool checks your email against that database via HaveIBeenPwned and tells you exactly which services exposed your data and what was leaked.</p>
+          <p class="panel-desc">Billions of credentials have been exposed in publicly known data breaches. This tool checks your email against that database via Have I Been Pwned and tells you exactly which services exposed your data and what was leaked.</p>
 
           <div class="feat-list">
             <div class="feat-item cat-red">
@@ -366,7 +366,7 @@ import { INSTALL_CHROME } from '../lib/links';
               </div>
               <div>
                 <div class="feat-item-name">Email breach lookup</div>
-                <div class="feat-item-desc">Check any email against HaveIBeenPwned right here on this website. No extension needed. <a href="/check" style="color:var(--cat-red); font-weight:600;">Try it now</a></div>
+                <div class="feat-item-desc">Check any email against Have I Been Pwned right here on this website. No extension needed. <a href="/check" style="color:var(--cat-red); font-weight:600;">Try it now</a></div>
               </div>
             </div>
             <div class="feat-item cat-red">
@@ -484,7 +484,7 @@ import { INSTALL_CHROME } from '../lib/links';
       Every feature above without a Pro badge is free, forever, with no time limit.
     </p>
     <div class="reveal" style="--delay:120ms; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Install free</a>
+      <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-install>Install free</a>
       <a href="/pricing" class="btn btn-outline btn-lg">See pricing</a>
     </div>
   </div>

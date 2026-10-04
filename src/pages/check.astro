@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 ---
 <Base
   title="Data Breach Check · Datawake"
-  description="Check if your email address has appeared in a known data breach. Free tool powered by HaveIBeenPwned."
+  description="Check if your email address has appeared in a known data breach. Free tool powered by Have I Been Pwned."
 >
 
 <Nav />
@@ -14,7 +14,7 @@ import Footer from '../components/Footer.astro';
 <div class="page-hero">
   <div class="container">
     <h1>Has your email been in a breach?</h1>
-    <p>Billions of accounts have been exposed in data breaches. Enter your email to check if any of yours were among them. Powered by HaveIBeenPwned.</p>
+    <p>Billions of accounts have been exposed in data breaches. Enter your email to check if any of yours were among them. Powered by Have I Been Pwned.</p>
   </div>
 </div>
 
@@ -32,7 +32,7 @@ import Footer from '../components/Footer.astro';
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
           </div>
           <h2>One quick setup</h2>
-          <p>This check uses the HaveIBeenPwned (HIBP) API. You need an API key from HIBP, which is stored in your browser. Your email goes directly to HIBP. We never see it.</p>
+          <p>This check uses the Have I Been Pwned (HIBP) API. You need an API key from HIBP, which is stored in your browser. Your email goes directly to HIBP. We never see it.</p>
 
           <ol class="setup-steps">
             <li>
@@ -84,7 +84,7 @@ import Footer from '../components/Footer.astro';
 
           <p class="check-note">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Your email goes directly to HaveIBeenPwned. We never see it.
+            Your email goes directly to Have I Been Pwned. We never see it.
             <button id="change-key-btn" class="text-btn">Change API key</button>
           </p>
         </div>
@@ -121,7 +121,7 @@ import Footer from '../components/Footer.astro';
       <aside class="check-aside">
         <div class="aside-block">
           <h3>About this check</h3>
-          <p>This tool queries <strong>HaveIBeenPwned</strong>, a database of known data breaches maintained by security researcher Troy Hunt. It covers billions of compromised accounts across thousands of breaches.</p>
+          <p>This tool queries <strong>Have I Been Pwned</strong>, a database of known data breaches maintained by security researcher Troy Hunt. It covers billions of compromised accounts across thousands of breaches.</p>
         </div>
         <div class="aside-block">
           <h3>Your privacy</h3>
@@ -164,11 +164,22 @@ import Footer from '../components/Footer.astro';
   align-items: start;
 }
 
+/* Grid and flex children default to their content's width; let them shrink on phones. */
+.check-layout > *, .key-input-group input, .check-form-row input { min-width: 0; }
+
 @media (max-width: 900px) {
   .check-layout {
     grid-template-columns: 1fr;
   }
   .check-aside { order: 2; }
+}
+
+@media (max-width: 480px) {
+  .check-card { padding: 24px 20px; }
+  .key-input-group, .check-form-row { flex-direction: column; }
+  .key-input-group button, .check-form-row button { width: 100%; justify-content: center; min-height: 48px; }
+  /* 16px stops iOS zooming into the field */
+  .key-input-group input { font-size: 16px; }
 }
 
 /* ── Card ────────────────────────────────────────────────── */
@@ -579,7 +590,7 @@ async function runCheck() {
 
     if (res.status === 401) {
       clearKey();
-      showError(checkError, 'Your API key was rejected by HaveIBeenPwned. Please re-enter it.');
+      showError(checkError, 'Your API key was rejected by Have I Been Pwned. Please re-enter it.');
       init();
       return;
     }
@@ -597,7 +608,7 @@ async function runCheck() {
     showBreaches(email, breaches);
 
   } catch (err) {
-    showError(checkError, 'Something went wrong reaching HaveIBeenPwned. Check your internet connection and try again.');
+    showError(checkError, 'Something went wrong reaching Have I Been Pwned. Check your internet connection and try again.');
     console.error(err);
   } finally {
     setLoading(false);

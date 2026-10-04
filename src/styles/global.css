@@ -1171,7 +1171,7 @@ h1, h2, h3, h4 {
 
 .guarantee-pillars {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 
@@ -1222,7 +1222,7 @@ h1, h2, h3, h4 {
 .footer {
   background: var(--surface);
   border-top: 1px solid var(--border);
-  padding: 48px 0;
+  padding: 0 0 48px;
 }
 
 .footer-inner {
@@ -1719,4 +1719,71 @@ h1, h2, h3, h4 {
 @media (max-width: 900px) {
   .hero-visual { order: 0; }
   .hero-popup { width: 280px; }
+}
+
+/* ── Phones: install from a computer ── */
+.mobile-only { display: none; }
+.is-mobile .mobile-only { display: block; }
+.is-mobile .desktop-only { display: none !important; }
+.mobile-install-note {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+.toast {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 200;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.4;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+}
+
+/* ── Phone layout ── */
+.feature-shot-wrap { display: block; }
+@media (max-width: 600px) {
+  .feature-shot-wrap .feature-shot { width: 100%; max-width: 360px; margin: 0 auto; }
+}
+@media (max-width: 480px) {
+  .section { padding: 56px 0; }
+  .hero { padding: 28px 0 48px; }
+  .hero-inner { gap: 32px; }
+  .hero-sub { font-size: 17px; }
+  .section-title { font-size: clamp(26px, 7.4vw, 32px); }
+
+  /* Hero notes: tidy pills that wrap, instead of cramped columns */
+  .hero-note { flex-wrap: wrap; gap: 8px; }
+  .hero-note span { white-space: nowrap; padding: 6px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); }
+
+  /* How it works: compact rows, number beside the text */
+  .step { display: grid; grid-template-columns: 36px 1fr; column-gap: 14px; padding: 18px; }
+  .step .step-num { grid-row: span 2; margin: 0; width: 36px; height: 36px; font-size: 14px; }
+  .step h3 { margin: 4px 0 4px; font-size: 17px; }
+  .step p { margin: 0; }
+  .steps { gap: 12px; }
+
+  /* Trust pillars: icon beside the title, less height */
+  .guarantee-pillars { gap: 12px; }
+
+  /* Buttons fill the width and are easy to tap */
+  .btn-lg { min-height: 52px; }
+}
+
+@media (max-width: 600px) {
+  /* The hero already shows the popup's company list; skip the illustrated copy on phones. */
+  .problem-visual { display: none; }
+  .pillar { display: grid; grid-template-columns: 40px 1fr; column-gap: 14px; padding: 18px; }
+  .pillar .pillar-icon { grid-row: span 2; width: 40px; height: 40px; margin: 0; }
+  .pillar h3, .pillar h4 { margin-top: 2px; }
 }

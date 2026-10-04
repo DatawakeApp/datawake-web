@@ -23,12 +23,14 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
       </p>
 
       <div class="hero-ctas">
-        <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+        <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-install>
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Add to Chrome, free
         </a>
-        <a href={INSTALL_FIREFOX} class="btn btn-outline btn-lg" target="_blank" rel="noopener">Add to Firefox</a>
+        <a href={INSTALL_FIREFOX} class="btn btn-outline btn-lg desktop-only" target="_blank" rel="noopener">Add to Firefox</a>
       </div>
+
+      <p class="mobile-only mobile-install-note">Datawake is a browser extension for Chrome and Firefox on a computer. Send yourself the link and install it there.</p>
 
       <p class="hero-note">
         <span>No account needed</span>
@@ -185,7 +187,10 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
         </a>
       </div>
 
-      <img class="feature-shot reveal" style="--delay:80ms" src="/img/violation.png" width="1180" height="680" loading="lazy" alt="The Datawake dashboard showing a site that set 4 tracking cookies and fingerprinted the device after the user clicked Reject." />
+      <picture class="feature-shot-wrap reveal" style="--delay:80ms">
+        <source media="(max-width: 600px)" srcset="/img/violation-m.png" width="390" height="700" />
+        <img class="feature-shot" src="/img/violation.png" width="1180" height="680" loading="lazy" alt="The Datawake dashboard showing a site that set 4 tracking cookies and fingerprinted the device after the user clicked Reject." />
+      </picture>
 
     </div>
   </div>
@@ -213,7 +218,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
     <h2 class="section-title" style="margin-bottom:12px;">Free forever, with a Pro tier for those who want more</h2>
     <p class="section-sub" style="margin:0 auto 40px;">Core features are always free. No trial, no credit card. Pro tier with deeper tools is coming soon.</p>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener">Install free</a>
+      <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-install>Install free</a>
       <a href="/pricing" class="btn btn-outline btn-lg">Compare plans</a>
     </div>
   </div>

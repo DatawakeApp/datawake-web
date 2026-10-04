@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { RELEASES } from '../lib/links';
+import { INSTALL_CHROME, RELEASES } from '../lib/links';
 ---
 <Base
   title="Pricing · Datawake"
@@ -49,7 +49,7 @@ import { RELEASES } from '../lib/links';
           <li><span class="pcheck"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg></span>GDPR access and deletion letters, export as JSON</li>
         </ul>
         <div class="pricing-cta">
-          <a href="https://github.com/DatawakeApp/datawake" class="btn btn-primary" style="width:100%; justify-content:center;" target="_blank" rel="noopener">
+          <a href={INSTALL_CHROME} class="btn btn-primary" style="width:100%; justify-content:center;" target="_blank" rel="noopener" data-install>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Install free
           </a>
@@ -120,7 +120,7 @@ import { RELEASES } from '../lib/links';
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer">
-          The breach check is powered by HaveIBeenPwned (HIBP), a trusted service run by security researcher Troy Hunt. You provide your own HIBP API key (HIBP charges for keys). When you check an email, the request goes directly from your browser to HIBP. We never see your email address.
+          The breach check is powered by Have I Been Pwned (HIBP), a trusted service run by security researcher Troy Hunt. You provide your own HIBP API key (HIBP charges for keys). When you check an email, the request goes directly from your browser to HIBP. We never see your email address.
         </div>
       </div>
       <div class="faq-item">

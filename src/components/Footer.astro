@@ -52,8 +52,9 @@ import { RELEASES } from '../lib/links';
 .footer {
   background: var(--surface);
   border-top: 1px solid var(--border);
-  padding-top: 56px;
 }
+/* Space goes below the dark Pro banner, not above it, so it meets the section before it. */
+.footer-waitlist + .footer-inner { margin-top: 56px; }
 
 .footer-inner {
   display: flex;
@@ -114,6 +115,13 @@ import { RELEASES } from '../lib/links';
 }
 
 .footer-col a:hover { color: var(--navy); }
+
+@media (max-width: 768px) {
+  .footer-col { gap: 0; }
+  /* Comfortable tap targets on phones */
+  .footer-col a { display: flex; align-items: center; min-height: 44px; font-size: 15px; }
+  .fw-btn { min-height: 48px; display: inline-flex; align-items: center; }
+}
 
 .footer-bottom {
   display: flex;
