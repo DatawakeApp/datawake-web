@@ -13,14 +13,8 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
   <div class="hero-inner container">
 
     <div class="hero-text">
-      <a class="hero-pill" href="/features">
-        <span class="hero-pill-tag">New</span>
-        <span class="pill-long">Report sites to your data protection authority</span>
-        <span class="pill-short">Report sites to regulators</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
       <h1 class="display">
-        You clicked Reject.<br>They tracked you <em class="serif">anyway.</em>
+        You clicked Reject.<br>They tracked you anyway.
       </h1>
 
       <p class="hero-sub">
@@ -46,8 +40,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
     </div>
 
     <div class="hero-visual">
-      <figure class="frame frame--glow">
-        <span class="frame-tag"><span class="frame-tag-dot"></span>Live on this page</span>
+      <figure class="frame">
         <img class="hero-popup" src="/img/popup.png" width="380" height="620" alt="The Datawake popup on a news site: 6 companies tracking you, one of them recording your screen, and cookies rejected for you." />
       </figure>
     </div>
@@ -61,15 +54,12 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
   <div class="container problem-inner">
 
     <div class="problem-text reveal">
-      <h2 class="section-title two-tone"><span class="hl">Most people have no idea</span> what happens after they click Reject.</h2>
+      <h2 class="section-title">Most people have no idea what happens after they click Reject.</h2>
       <p class="lead" style="--lead-gap:20px">
         Cookie banners are supposed to give you a choice. In practice, many sites load advertising scripts, analytics trackers, and data broker pixels regardless of what you clicked, often before the page has even finished loading.
       </p>
       <p class="lead" style="--lead-gap:32px">
         Datawake monitors every third-party connection your browser makes, compares cookies before and after you reject a banner, and surfaces exactly which companies are active on each page, and what they do with your data.
-      </p>
-      <p style="font-size:15px; color:var(--text-soft); line-height:1.7; padding:20px 24px; background:rgba(91,214,165,0.07); border-left:3px solid var(--accent); border-radius:0 10px 10px 0; margin-bottom:32px;">
-        Awareness is the first step. Datawake gives you the evidence. What you do with it is up to you.
       </p>
       <a href="/features" class="btn btn-outline">
         See everything Datawake shows you
@@ -78,7 +68,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
     </div>
 
     <div class="problem-visual reveal" style="--delay:120ms">
-      <div style="font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.08em;">What Datawake shows you on a typical news site</div>
+      <div style="font-size:14px; color:var(--text-soft); margin-bottom:12px;">On a typical news site, Datawake shows you:</div>
 
       <div class="tracker-row">
         <span class="tracker-dot" style="background:#4285f4"></span>
@@ -132,8 +122,8 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
 <section class="section section-alt" id="how">
   <div class="container how-inner">
     <div class="how-header">
-      <h2 class="section-title two-tone" style="margin:0 auto 16px; max-width:480px;"><span class="hl">Up and running</span> in 60 seconds</h2>
-      <p class="section-sub" style="margin:0 auto;">No configuration. No account. No complicated setup. You install it, and it works.</p>
+      <h2 class="section-title" style="margin:0 auto 16px; max-width:480px;">How it works</h2>
+      <p class="section-sub" style="margin:0 auto;">Install it once. After that it works on every site you visit.</p>
     </div>
 
     <div class="steps">
@@ -162,7 +152,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
     <div class="teaser-grid">
 
       <div class="reveal">
-        <h2 class="section-title two-tone"><span class="hl">Says no for you.</span> Catches the sites that don&apos;t <em class="serif">listen.</em></h2>
+        <h2 class="section-title">What Datawake does</h2>
         <p class="lead" style="--lead-gap:28px">
           Datawake says no to cookie banners for you, then keeps watching. It names every company loading on the page, shows which ones are sending data right now, and catches the sites that keep tracking you after you said no. For each one it explains what they collect and whether they sell your data.
         </p>
@@ -197,7 +187,6 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
       </div>
 
       <figure class="frame reveal" style="--delay:80ms">
-        <span class="frame-tag frame-tag--alert"><span class="frame-tag-dot"></span>Caught after Reject</span>
         <picture class="feature-shot-wrap">
         <source media="(max-width: 600px)" srcset="/img/violation-m.png" width="342" height="621" />
         <img class="feature-shot" src="/img/violation.png" width="1180" height="680" loading="lazy" alt="The Datawake dashboard showing a site that set 4 tracking cookies and fingerprinted the device after the user clicked Reject." />
@@ -227,7 +216,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
 <!-- ─── PRICING TEASER ───────────────────────────────────────────────── -->
 <section class="section">
   <div class="container" style="text-align:center;">
-    <h2 class="section-title two-tone" style="margin-bottom:12px;"><span class="hl">Free forever,</span> with a Pro tier for those who want more</h2>
+    <h2 class="section-title" style="margin-bottom:12px;">Free to use</h2>
     <p class="section-sub" style="margin:0 auto 40px;">Core features are always free. No trial, no credit card. Pro tier with deeper tools is coming soon.</p>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
       <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-install>Install free</a>
@@ -241,9 +230,9 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
   <div class="container guarantee-inner">
 
     <div class="guarantee-header reveal">
-      <h2 class="section-title two-tone two-tone--dark"><span class="hl">Privacy tools should be trustworthy</span> by design, not by <em class="serif">promise.</em></h2>
+      <h2 class="section-title">Your data stays on your computer</h2>
       <p class="section-sub" style="margin:0 auto; color:rgba(255,255,255,0.72);">
-        Everything Datawake records stays on your device. The code is open source. There is no account, no telemetry, and nothing sent to our servers.
+        No account, no analytics, and the code is public so anyone can check it.
       </p>
     </div>
 
@@ -252,8 +241,8 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
         <div class="pillar-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
         </div>
-        <h3>Your data stays on your device</h3>
-        <p>Everything Datawake records is stored in your browser's local storage. We have no server-side access to it and never will.</p>
+        <h3>Stored in your browser</h3>
+        <p>What Datawake records is saved in your browser. We have no copy of it.</p>
       </div>
       <div class="pillar reveal" style="--delay:80ms">
         <div class="pillar-icon">
@@ -267,7 +256,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
         <h3>Open source</h3>
-        <p>The full source code is on GitHub. You can read exactly what the extension does. No need to take our word for it.</p>
+        <p>The full source code is on GitHub. You can read exactly what the extension does.</p>
       </div>
     </div>
 
