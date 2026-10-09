@@ -1725,16 +1725,6 @@ h1, h2, h3, h4 {
 .mobile-only { display: none; }
 .is-mobile .mobile-only { display: block; }
 .is-mobile .desktop-only { display: none !important; }
-.mobile-install-note {
-  margin: 14px 0 0;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--text-soft);
-}
 .toast {
   position: fixed;
   left: 16px;
@@ -1750,40 +1740,68 @@ h1, h2, h3, h4 {
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
 }
 
-/* ── Phone layout ── */
+
+
+/* ── Body copy used across sections ── */
+.lead { font-size: 17px; color: var(--text-soft); line-height: 1.7; margin: 0 0 var(--lead-gap, 20px); }
+
+/* ════ Phone spacing system ════
+ * One rhythm for every section on phones:
+ *   section padding 56px · title to text 12px · text to content 28px
+ *   between paragraphs 16px · between cards 12px · card padding 20px
+ */
 .feature-shot-wrap { display: block; }
 @media (max-width: 600px) {
-  .feature-shot-wrap .feature-shot { width: 100%; max-width: 360px; margin: 0 auto; }
-}
-@media (max-width: 480px) {
+  .container { padding: 0 20px; }
   .section { padding: 56px 0; }
-  .hero { padding: 28px 0 48px; }
-  .hero-inner { gap: 32px; }
-  .hero-sub { font-size: 17px; }
-  .section-title { font-size: clamp(26px, 7.4vw, 32px); }
 
-  /* Hero notes: tidy pills that wrap, instead of cramped columns */
-  .hero-note { flex-wrap: wrap; gap: 8px; }
-  .hero-note span { white-space: nowrap; padding: 6px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); }
+  /* Headings and text */
+  .section-title { font-size: clamp(26px, 7.2vw, 32px); line-height: 1.15; margin-bottom: 12px; }
+  .section-sub { font-size: 16px; line-height: 1.6; }
+  .lead { font-size: 16px; line-height: 1.6; margin-bottom: 16px; }
+  .lead:last-of-type { margin-bottom: 24px; }
 
-  /* How it works: compact rows, number beside the text */
-  .step { display: grid; grid-template-columns: 36px 1fr; column-gap: 14px; padding: 18px; }
-  .step .step-num { grid-row: span 2; margin: 0; width: 36px; height: 36px; font-size: 14px; }
-  .step h3 { margin: 4px 0 4px; font-size: 17px; }
-  .step p { margin: 0; }
+  /* Long section headers read better left-aligned on a narrow screen */
+  .how-header, .guarantee-header { text-align: left; margin-bottom: 28px; }
+  .how-header .section-title, .how-header .section-sub,
+  .guarantee-header .section-title, .guarantee-header .section-sub { margin-left: 0 !important; margin-right: 0 !important; max-width: none; }
+
+  /* Hero */
+  .hero { padding: 24px 0 48px; }
+  .hero-inner { gap: 36px; }
+  .hero h1 { margin-bottom: 16px; }
+  .hero-sub { font-size: 17px; line-height: 1.55; margin-bottom: 24px; }
+  .hero-ctas { flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 12px; }
+  .hero-ctas .btn { width: 100%; justify-content: center; min-height: 52px; }
+  .mobile-install-note { margin: 0 0 14px; font-size: 14px; line-height: 1.5; color: var(--text-soft); }
+  .hero-note { flex-wrap: wrap; gap: 4px 14px; font-size: 13px; }
+  .hero-popup { width: 280px; }
+
+  /* The hero already shows the popup's company list */
+  .problem-visual { display: none; }
+
+  /* Cards: 12px apart, 20px inside, icon or number beside the text */
   .steps { gap: 12px; }
+  .step { display: grid; grid-template-columns: 36px 1fr; column-gap: 14px; padding: 20px; }
+  .step .step-num { grid-row: span 2; margin: 0; width: 36px; height: 36px; font-size: 14px; }
+  .step h3 { margin: 6px 0 4px; font-size: 17px; }
+  .step p { margin: 0; line-height: 1.55; }
+  .guarantee-pillars { grid-template-columns: 1fr; gap: 12px; }
+  .pillar { display: grid; grid-template-columns: 40px 1fr; column-gap: 14px; padding: 20px; }
+  .pillar .pillar-icon { grid-row: span 2; width: 40px; height: 40px; margin: 0; }
+  .pillar h3 { margin: 8px 0 4px; }
+  .pillar p { margin: 0; line-height: 1.55; }
 
-  /* Trust pillars: icon beside the title, less height */
-  .guarantee-pillars { gap: 12px; }
+  /* Lists and screenshots */
+  .check-list { margin-bottom: 24px !important; }
+  .check-list li + li { margin-top: 2px; }
+  .teaser-grid { gap: 32px; }
+  .feature-shot-wrap .feature-shot { max-width: 360px; margin: 0 auto; }
 
-  /* Buttons fill the width and are easy to tap */
-  .btn-lg { min-height: 52px; }
+  /* Buttons that end a section fill the width */
+  .problem-text > .btn, .teaser-grid .btn { width: 100%; justify-content: center; min-height: 48px; }
 }
 
 @media (max-width: 600px) {
-  /* The hero already shows the popup's company list; skip the illustrated copy on phones. */
-  .problem-visual { display: none; }
-  .pillar { display: grid; grid-template-columns: 40px 1fr; column-gap: 14px; padding: 18px; }
-  .pillar .pillar-icon { grid-row: span 2; width: 40px; height: 40px; margin: 0; }
-  .pillar h3, .pillar h4 { margin-top: 2px; }
+  .coming-card-v2 { padding: 20px; }
 }
