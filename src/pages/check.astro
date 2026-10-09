@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 ---
 <Base
   title="Data Breach Check · Datawake"
-  description="Check if your email address has appeared in a known data breach. Free tool powered by Have I Been Pwned."
+  description="Check if your email address has appeared in a known data breach. Free, instant, and Datawake never sees or stores your email."
 >
 
 <Nav />
@@ -14,7 +14,7 @@ import Footer from '../components/Footer.astro';
 <div class="page-hero">
   <div class="container">
     <h1>Has your email been in a breach?</h1>
-    <p>Billions of accounts have been exposed in data breaches. Enter your email to check if any of yours were among them. Powered by Have I Been Pwned.</p>
+    <p>Billions of accounts have been exposed in data breaches. Enter your email to see if yours is one of them. It takes a second and there is nothing to set up.</p>
   </div>
 </div>
 
@@ -26,46 +26,8 @@ import Footer from '../components/Footer.astro';
       <!-- Main tool -->
       <div class="check-main">
 
-        <!-- Step 1: API key setup (shown when no key stored) -->
-        <div id="setup-step" class="check-card" style="display:none;">
-          <div class="setup-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-          </div>
-          <h2>One quick setup</h2>
-          <p>This check uses the Have I Been Pwned (HIBP) API. You need an API key from HIBP, which is stored in your browser. Your email goes directly to HIBP. We never see it.</p>
-
-          <ol class="setup-steps">
-            <li>
-              <span class="setup-num">1</span>
-              <div>
-                <strong>Get an HIBP API key</strong>
-                <p>Go to <a href="https://haveibeenpwned.com/API/Key" target="_blank" rel="noopener" class="setup-link">haveibeenpwned.com/API/Key</a> and follow the steps. HIBP charges for keys; Datawake gets nothing from it.</p>
-              </div>
-            </li>
-            <li>
-              <span class="setup-num">2</span>
-              <div>
-                <strong>Paste your key below</strong>
-                <p>It stays in your browser's localStorage. You only need to do this once.</p>
-              </div>
-            </li>
-          </ol>
-
-          <div class="key-input-group">
-            <input
-              type="text"
-              id="api-key-input"
-              placeholder="Paste your HIBP API key here"
-              autocomplete="off"
-              spellcheck="false"
-            />
-            <button id="save-key-btn" class="btn btn-primary">Save key</button>
-          </div>
-          <p id="key-error" class="field-error" style="display:none;"></p>
-        </div>
-
-        <!-- Main check form (shown when key exists) -->
-        <div id="check-step" class="check-card" style="display:none;">
+        <!-- Check form -->
+        <div id="check-step" class="check-card">
           <h2>Check an email address</h2>
 
           <div class="check-form-row">
@@ -84,8 +46,7 @@ import Footer from '../components/Footer.astro';
 
           <p class="check-note">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Your email goes directly to Have I Been Pwned. We never see it.
-            <button id="change-key-btn" class="text-btn">Change API key</button>
+            Your email is only used for this check. Datawake never sees or stores it.
           </p>
         </div>
 
@@ -121,22 +82,23 @@ import Footer from '../components/Footer.astro';
       <aside class="check-aside">
         <div class="aside-block">
           <h3>About this check</h3>
-          <p>This tool queries <strong>Have I Been Pwned</strong>, a database of known data breaches maintained by security researcher Troy Hunt. It covers billions of compromised accounts across thousands of breaches.</p>
+          <p>Your email is checked against a database of known breaches covering thousands of incidents and billions of records. A clean result means it is not in any breach on record, not that it has never leaked.</p>
+          <p class="source-credit">Breach data: <a href="https://xposedornot.com" target="_blank" rel="noopener">XposedOrNot</a></p>
         </div>
         <div class="aside-block">
           <h3>Your privacy</h3>
           <ul class="aside-list">
             <li>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Your email goes directly to HIBP, not to Datawake
+              Datawake never sees or stores your email
             </li>
             <li>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-              Your API key is stored in your browser only
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              No account, no key, nothing to set up
             </li>
             <li>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              This page is open source, you can verify it
+              This page is open source, so you can check it
             </li>
           </ul>
         </div>
@@ -165,7 +127,7 @@ import Footer from '../components/Footer.astro';
 }
 
 /* Grid and flex children default to their content's width; let them shrink on phones. */
-.check-layout > *, .key-input-group input, .check-form-row input { min-width: 0; }
+.check-layout > *, .check-form-row input { min-width: 0; }
 
 @media (max-width: 900px) {
   .check-layout {
@@ -174,13 +136,6 @@ import Footer from '../components/Footer.astro';
   .check-aside { order: 2; }
 }
 
-@media (max-width: 480px) {
-  .check-card { padding: 24px 20px; }
-  .key-input-group, .check-form-row { flex-direction: column; }
-  .key-input-group button, .check-form-row button { width: 100%; justify-content: center; min-height: 48px; }
-  /* 16px stops iOS zooming into the field */
-  .key-input-group input { font-size: 16px; }
-}
 
 /* ── Card ────────────────────────────────────────────────── */
 .check-card {
@@ -200,94 +155,6 @@ import Footer from '../components/Footer.astro';
   color: var(--text-soft);
   line-height: 1.7;
   margin-bottom: 28px;
-}
-
-/* ── Setup step ──────────────────────────────────────────── */
-.setup-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: rgba(91,214,165,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  color: var(--accent-dark);
-}
-
-.setup-icon svg { width: 26px; height: 26px; }
-
-.setup-steps {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.setup-steps li {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-}
-
-.setup-num {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--navy);
-  color: white;
-  font-size: 13px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2px;
-}
-
-.setup-steps li strong {
-  display: block;
-  font-size: 15px;
-  margin-bottom: 4px;
-  color: var(--text);
-}
-
-.setup-steps li p {
-  margin: 0;
-  font-size: 14px;
-  color: var(--text-soft);
-  line-height: 1.6;
-}
-
-.setup-link {
-  color: var(--accent-dark);
-  font-weight: 500;
-}
-
-.key-input-group {
-  display: flex;
-  gap: 10px;
-}
-
-.key-input-group input {
-  flex: 1;
-  height: 46px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 0 16px;
-  font-size: 14px;
-  font-family: 'Inter', monospace;
-  color: var(--text);
-  background: var(--bg);
-  transition: border-color 0.15s;
-  letter-spacing: 0.02em;
-}
-
-.key-input-group input:focus {
-  outline: none;
-  border-color: var(--accent);
 }
 
 /* ── Check form ──────────────────────────────────────────── */
@@ -470,243 +337,156 @@ import Footer from '../components/Footer.astro';
 
 .aside-cta { background: rgba(91,214,165,0.06); border-color: rgba(91,214,165,0.25); }
 .aside-cta h3 { color: var(--navy); }
+
+/* Phones: placed last so these win over the base rules above */
+@media (max-width: 600px) {
+  .check-card { padding: 24px 20px; }
+  .check-card h2 { font-size: 20px; margin-bottom: 14px; }
+  .check-form-row { flex-direction: column; }
+  .check-form-row input[type="email"] { flex: none; height: 52px; font-size: 16px; }
+  .check-form-row button { width: 100%; justify-content: center; min-height: 52px; }
+  .check-note { align-items: flex-start; flex-wrap: nowrap; line-height: 1.5; }
+  .check-note svg { margin-top: 3px; }
+  .breach-card { padding: 18px 20px; }
+}
+
+.breach-more { width: 100%; justify-content: center; margin-top: 4px; }
 </style>
 
 <script>
-// ── State ────────────────────────────────────────────────────────────────
-const KEY_STORAGE = 'dw_hibp_key';
+// Breach lookup straight from the visitor's browser: no key, no account, nothing passes through
+// Datawake. The database is XposedOrNot's free API (credited on the page, as its terms require).
+const API = 'https://api.xposedornot.com/v1/breach-analytics?email=';
 
-function getKey(): string | null {
-  return localStorage.getItem(KEY_STORAGE);
+interface BreachDetail {
+  breach: string;
+  domain?: string;
+  xposed_date?: string;
+  xposed_data?: string;
+  xposed_records?: number;
+  password_risk?: string;
 }
 
-function saveKey(key: string): void {
-  localStorage.setItem(KEY_STORAGE, key);
-}
-
-function clearKey(): void {
-  localStorage.removeItem(KEY_STORAGE);
-}
-
-// ── DOM refs ─────────────────────────────────────────────────────────────
-const setupStep     = document.getElementById('setup-step')!;
-const checkStep     = document.getElementById('check-step')!;
-const apiKeyInput   = document.getElementById('api-key-input') as HTMLInputElement;
-const saveKeyBtn    = document.getElementById('save-key-btn')!;
-const keyError      = document.getElementById('key-error')!;
-const emailInput    = document.getElementById('email-input') as HTMLInputElement;
-const checkBtn      = document.getElementById('check-btn')!;
-const checkBtnText  = document.getElementById('check-btn-text')!;
-const checkSpinner  = document.getElementById('check-spinner')!;
-const checkError    = document.getElementById('check-error')!;
-const changeKeyBtn  = document.getElementById('change-key-btn')!;
-const results       = document.getElementById('results')!;
-const resultClean   = document.getElementById('result-clean')!;
+const emailInput   = document.getElementById('email-input') as HTMLInputElement;
+const checkBtn     = document.getElementById('check-btn') as HTMLButtonElement;
+const checkBtnText = document.getElementById('check-btn-text')!;
+const checkSpinner = document.getElementById('check-spinner')!;
+const checkError   = document.getElementById('check-error')!;
+const results      = document.getElementById('results')!;
+const resultClean  = document.getElementById('result-clean')!;
 const resultCleanEmail = document.getElementById('result-clean-email')!;
 const resultBreaches = document.getElementById('result-breaches')!;
 const breachCountHeading = document.getElementById('breach-count-heading')!;
 const breachCountEmail = document.getElementById('breach-count-email')!;
-const breachList    = document.getElementById('breach-list')!;
+const breachList   = document.getElementById('breach-list')!;
 
-// ── Init ─────────────────────────────────────────────────────────────────
-function init() {
-  const stored = getKey();
-  if (stored) {
-    setupStep.style.display = 'none';
-    checkStep.style.display = 'block';
-  } else {
-    setupStep.style.display = 'block';
-    checkStep.style.display = 'none';
-  }
-  results.style.display = 'none';
-}
-
-init();
-
-// ── Save API key ──────────────────────────────────────────────────────────
-saveKeyBtn.addEventListener('click', () => {
-  const key = apiKeyInput.value.trim();
-  if (!key) {
-    showError(keyError, 'Please paste your HIBP API key.');
-    return;
-  }
-  if (key.length < 20) {
-    showError(keyError, 'That doesn\'t look like a valid API key. Make sure you copied the whole thing.');
-    return;
-  }
-  clearError(keyError);
-  saveKey(key);
-  init();
-});
-
-apiKeyInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') saveKeyBtn.click();
-});
-
-// ── Change key ────────────────────────────────────────────────────────────
-changeKeyBtn.addEventListener('click', () => {
-  clearKey();
-  apiKeyInput.value = '';
-  init();
-});
-
-// ── Run check ─────────────────────────────────────────────────────────────
 checkBtn.addEventListener('click', runCheck);
-emailInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') runCheck();
-});
+emailInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') runCheck(); });
 
 async function runCheck() {
   const email = emailInput.value.trim();
-  const key   = getKey();
+  if (!email) return showError('Please enter an email address.');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError("That doesn't look like a valid email address.");
 
-  if (!email) {
-    showError(checkError, 'Please enter an email address.');
-    return;
-  }
-  if (!isValidEmail(email)) {
-    showError(checkError, 'That doesn\'t look like a valid email address.');
-    return;
-  }
-  if (!key) {
-    init();
-    return;
-  }
-
-  clearError(checkError);
+  clearError();
   setLoading(true);
   results.style.display = 'none';
-
   try {
-    const res = await fetch(
-      `https://haveibeenpwned.com/api/v3/breachedaccount/${encodeURIComponent(email)}?truncateResponse=false`,
-      {
-        headers: {
-          'hibp-api-key': key,
-          'User-Agent': 'Datawake-BreachCheck',
-        },
-      }
-    );
-
-    if (res.status === 401) {
-      clearKey();
-      showError(checkError, 'Your API key was rejected by Have I Been Pwned. Please re-enter it.');
-      init();
-      return;
-    }
-
-    if (res.status === 404) {
-      showClean(email);
-      return;
-    }
-
-    if (!res.ok) {
-      throw new Error(`HIBP returned status ${res.status}`);
-    }
-
-    const breaches = await res.json() as Breach[];
-    showBreaches(email, breaches);
-
+    const res = await fetch(API + encodeURIComponent(email));
+    if (res.status === 429) return showError('Too many checks from this connection. Please wait a minute and try again.');
+    if (!res.ok) throw new Error(`status ${res.status}`);
+    const data = await res.json();
+    const details: BreachDetail[] = data?.ExposedBreaches?.breaches_details ?? [];
+    if (details.length === 0) showClean(email);
+    else showBreaches(email, details);
   } catch (err) {
-    showError(checkError, 'Something went wrong reaching Have I Been Pwned. Check your internet connection and try again.');
+    showError("We couldn't run the check just now. Please check your connection and try again.");
     console.error(err);
   } finally {
     setLoading(false);
   }
 }
 
-// ── Display helpers ────────────────────────────────────────────────────────
 function showClean(email: string) {
   results.style.display = 'block';
   resultClean.style.display = 'block';
   resultBreaches.style.display = 'none';
-  resultCleanEmail.textContent = `${email} was not found in any known breach. That's good news, but it's worth checking again from time to time.`;
+  resultCleanEmail.textContent = `${email} is not in any breach on record. It's worth checking again from time to time.`;
 }
 
-function showBreaches(email: string, breaches: Breach[]) {
+function showBreaches(email: string, breaches: BreachDetail[]) {
   results.style.display = 'block';
   resultClean.style.display = 'none';
   resultBreaches.style.display = 'block';
-
-  const count = breaches.length;
-  breachCountHeading.textContent = `Found in ${count} breach${count === 1 ? '' : 'es'}`;
+  breachCountHeading.textContent = `Found in ${breaches.length} breach${breaches.length === 1 ? '' : 'es'}`;
   breachCountEmail.textContent = email;
-
-  breachList.innerHTML = '';
-  breaches
-    .sort((a, b) => new Date(b.BreachDate).getTime() - new Date(a.BreachDate).getTime())
-    .forEach(breach => {
-      breachList.appendChild(buildBreachCard(breach));
-    });
+  const sorted = [...breaches].sort((a, b) => Number(b.xposed_date ?? 0) - Number(a.xposed_date ?? 0));
+  const draw = (limit: number) => {
+    breachList.replaceChildren(...sorted.slice(0, limit).map(buildBreachCard));
+    if (sorted.length > limit) {
+      const more = document.createElement('button');
+      more.type = 'button';
+      more.className = 'btn btn-outline breach-more';
+      more.textContent = `Show all ${sorted.length} breaches`;
+      more.addEventListener('click', () => draw(sorted.length));
+      breachList.append(more);
+    }
+  };
+  draw(BREACHES_SHOWN);
 }
 
-interface Breach {
-  Name: string;
-  Title: string;
-  BreachDate: string;
-  Description: string;
-  DataClasses: string[];
-  PwnCount: number;
-  IsVerified: boolean;
+const BREACHES_SHOWN = 10;
+
+/** "ManchesterAirportsGroup" reads as "Manchester Airports Group"; short names like "LinkedIn" stay. */
+function readableName(name: string): string {
+  const humps = name.match(/[a-z][A-Z]/g)?.length ?? 0;
+  return humps >= 2 ? name.replace(/([a-z])([A-Z])/g, '$1 $2') : name;
 }
 
-function buildBreachCard(breach: Breach): HTMLElement {
-  const card = document.createElement('div');
-  card.className = 'breach-card';
-
-  const dateStr = breach.BreachDate
-    ? new Date(breach.BreachDate).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
-    : 'Date unknown';
-
-  const pwnStr = breach.PwnCount
-    ? `${(breach.PwnCount / 1_000_000).toFixed(1)}M accounts`
-    : '';
-
-  const chips = breach.DataClasses
-    .slice(0, 6)
-    .map(dc => `<span class="data-chip">${dc}</span>`)
-    .join('');
-
-  const extra = breach.DataClasses.length > 6
-    ? `<span class="data-chip data-chip--more">+${breach.DataClasses.length - 6} more</span>`
-    : '';
-
-  const unverified = !breach.IsVerified
-    ? `<span class="breach-unverified">Unverified</span>`
-    : '';
-
-  card.innerHTML = `
-    <div class="breach-card-header">
-      <div>
-        <div class="breach-title">${breach.Title} ${unverified}</div>
-        <div class="breach-meta">${dateStr}${pwnStr ? ' · ' + pwnStr : ''}</div>
-      </div>
-    </div>
-    <div class="breach-chips">${chips}${extra}</div>
-  `;
-
+/** Built with DOM text nodes, never innerHTML: the data comes from an outside service. */
+function buildBreachCard(b: BreachDetail): HTMLElement {
+  const el = (tag: string, cls: string, text?: string) => {
+    const n = document.createElement(tag);
+    n.className = cls;
+    if (text) n.textContent = text;
+    return n;
+  };
+  const card = el('div', 'breach-card');
+  const meta = [b.xposed_date, b.xposed_records ? `${formatCount(b.xposed_records)} accounts` : ''].filter(Boolean).join(' · ');
+  const header = el('div', 'breach-card-header');
+  const head = el('div', '');
+  head.append(el('div', 'breach-title', readableName(b.breach)), el('div', 'breach-meta', meta));
+  header.append(head);
+  const exposed = (b.xposed_data ?? '').split(';').map((s) => s.trim()).filter(Boolean);
+  const chips = el('div', 'breach-chips');
+  if (b.password_risk === 'plaintext') chips.append(el('span', 'data-chip data-chip--warn', 'Passwords in plain text'));
+  for (const d of exposed.slice(0, 6)) chips.append(el('span', 'data-chip', d));
+  if (exposed.length > 6) chips.append(el('span', 'data-chip data-chip--more', `+${exposed.length - 6} more`));
+  card.append(header, chips);
   return card;
+}
+
+function formatCount(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${Math.round(n / 1_000)}K`;
+  return String(n);
 }
 
 function setLoading(loading: boolean) {
   checkBtnText.textContent = loading ? 'Checking…' : 'Check';
   checkSpinner.style.display = loading ? 'block' : 'none';
-  (checkBtn as HTMLButtonElement).disabled = loading;
-  (emailInput as HTMLInputElement).disabled = loading;
+  checkBtn.disabled = loading;
+  emailInput.disabled = loading;
 }
 
-function showError(el: HTMLElement, msg: string) {
-  el.textContent = msg;
-  el.style.display = 'block';
+function showError(msg: string) {
+  checkError.textContent = msg;
+  checkError.style.display = 'block';
 }
 
-function clearError(el: HTMLElement) {
-  el.textContent = '';
-  el.style.display = 'none';
-}
-
-function isValidEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+function clearError() {
+  checkError.textContent = '';
+  checkError.style.display = 'none';
 }
 </script>
 
@@ -766,6 +546,19 @@ function isValidEmail(email: string): boolean {
   border-radius: 999px;
   white-space: nowrap;
 }
+
+.data-chip--warn {
+  background: rgba(229,72,77,0.1);
+  color: #b42318;
+}
+
+.source-credit {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.source-credit a { color: inherit; }
 
 .data-chip--more {
   background: rgba(91,214,165,0.1);
