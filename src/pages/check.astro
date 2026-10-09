@@ -74,6 +74,7 @@ import Footer from '../components/Footer.astro';
             </div>
             <div id="breach-list" class="breach-list"></div>
           </div>
+          <p class="source-credit">Breach data: <a href="https://xposedornot.com" target="_blank" rel="noopener">XposedOrNot</a></p>
         </div>
 
       </div>
@@ -83,7 +84,6 @@ import Footer from '../components/Footer.astro';
         <div class="aside-block">
           <h3>About this check</h3>
           <p>Your email is checked against a database of known breaches covering thousands of incidents and billions of records. A clean result means it is not in any breach on record, not that it has never leaked.</p>
-          <p class="source-credit">Breach data: <a href="https://xposedornot.com" target="_blank" rel="noopener">XposedOrNot</a></p>
         </div>
         <div class="aside-block">
           <h3>Your privacy</h3>
@@ -355,7 +355,7 @@ import Footer from '../components/Footer.astro';
 
 <script>
 // Breach lookup straight from the visitor's browser: no key, no account, nothing passes through
-// Datawake. The database is XposedOrNot's free API (credited on the page, as its terms require).
+// Datawake. The provider's terms ask for a credit wherever results are shown (under the results).
 const API = 'https://api.xposedornot.com/v1/breach-analytics?email=';
 
 interface BreachDetail {
