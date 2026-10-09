@@ -8,6 +8,14 @@
 }
 
 @font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/InstrumentSerif-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'DM Sans';
   src: url('/fonts/DMSans.var.woff2') format('woff2');
   font-weight: 100 900;
@@ -1433,15 +1441,18 @@ h1, h2, h3, h4 {
 /* ── Scroll reveal ── */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(18px);
+  filter: blur(6px);
   transition:
-    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--delay, 0ms);
 }
 
 .reveal.visible {
   opacity: 1;
+  filter: none;
   transform: translateY(0);
 }
 
@@ -1682,6 +1693,7 @@ h1, h2, h3, h4 {
   .reveal.visible {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
     transition: none !important;
   }
 
@@ -1804,4 +1816,146 @@ h1, h2, h3, h4 {
 
 @media (max-width: 600px) {
   .coming-card-v2 { padding: 20px; }
+}
+
+/* ════ Visual refresh: editorial type, framed media, calm motion ════ */
+
+/* Serif accent on a few key words */
+.serif {
+  font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  padding-right: 0.04em;
+}
+
+/* Two-tone headlines: the key phrase dark, the rest quieter */
+.two-tone { color: #64748B; }
+.two-tone .hl { color: var(--navy); }
+.two-tone--dark { color: rgba(255, 255, 255, 0.55) !important; }
+.two-tone--dark .hl { color: #fff; }
+
+/* Announcement pill above the hero headline */
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  padding: 5px 12px 5px 5px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-soft);
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: border-color var(--t), color var(--t), transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-pill:hover { border-color: #cbd5e1; color: var(--navy); transform: translateY(-1px); }
+.hero-pill svg { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.hero-pill:hover svg { transform: translateX(2px); }
+.hero-pill-tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(91, 214, 165, 0.16);
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Media in a frame: a card holding the screenshot, with a small tag on top */
+.frame {
+  position: relative;
+  margin: 0;
+  padding: 18px 8px 8px;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--surface), var(--bg));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 30px 70px -30px rgba(15, 23, 42, 0.35);
+}
+.frame .hero-popup,
+.frame .feature-shot {
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  box-shadow: none;
+}
+.hero-visual .frame { max-width: 360px; margin: 0 auto; }
+.frame--glow::before {
+  content: '';
+  position: absolute;
+  inset: 12% -18% -6% -18%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(91, 214, 165, 0.28), rgba(59, 130, 246, 0.12) 55%, transparent);
+  filter: blur(30px);
+}
+.frame-tag {
+  position: absolute;
+  top: -13px;
+  right: 22px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, 0.18);
+}
+.frame-tag-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(91, 214, 165, 0.6); animation: tagPulse 2s ease-out infinite; }
+.frame-tag--alert .frame-tag-dot { background: var(--danger); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); animation-name: tagPulseAlert; }
+@keyframes tagPulse { 0% { box-shadow: 0 0 0 0 rgba(91, 214, 165, 0.55); } 100% { box-shadow: 0 0 0 7px rgba(91, 214, 165, 0); } }
+@keyframes tagPulseAlert { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); } 100% { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); } }
+
+/* Pill buttons with a gentle press */
+.btn { border-radius: 999px; transition: background var(--t), color var(--t), border-color var(--t), box-shadow var(--t), transform 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0) scale(0.97); }
+
+/* Cards: a quiet inner bezel and a soft lift on hover */
+.step, .check-card, .coming-card-v2 {
+  box-shadow: inset 0 0 0 5px var(--surface), inset 0 0 0 6px rgba(226, 232, 240, 0.7), 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.step:hover, .coming-card-v2:hover {
+  transform: translateY(-3px);
+  box-shadow: inset 0 0 0 5px var(--surface), inset 0 0 0 6px rgba(226, 232, 240, 0.7), 0 18px 40px -20px rgba(15, 23, 42, 0.25);
+}
+.pillar { box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0), inset 0 0 0 6px rgba(255, 255, 255, 0.035); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background var(--t); }
+.pillar:hover { transform: translateY(-3px); }
+
+/* Smooth page-to-page transitions where the browser supports them (no JavaScript needed) */
+@view-transition { navigation: auto; }
+.nav { view-transition-name: site-nav; }
+::view-transition-old(root) { animation: 160ms ease both vtOut; }
+::view-transition-new(root) { animation: 320ms cubic-bezier(0.22, 1, 0.36, 1) both vtIn; }
+@keyframes vtOut { to { opacity: 0; } }
+@keyframes vtIn { from { opacity: 0; transform: translateY(8px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .frame-tag-dot { animation: none; }
+  .btn:hover, .btn:active, .step:hover, .pillar:hover, .coming-card-v2:hover, .hero-pill:hover { transform: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
+
+@media (max-width: 600px) {
+  .hero-pill { font-size: 12.5px; margin-bottom: 18px; min-height: 40px; }
+  .hero-visual .frame { max-width: 300px; }
+  .frame { border-radius: 24px; padding: 18px 6px 6px; }
+  .frame .hero-popup, .frame .feature-shot { border-radius: 18px; }
+  .frame-tag { top: -12px; right: 16px; }
+}
+
+/* The old dotted connector between steps shows through the bezelled cards; the numbers carry the order. */
+.steps::before { display: none; }
+
+.pill-short { display: none; }
+@media (max-width: 600px) {
+  .pill-long { display: none; }
+  .pill-short { display: inline; }
 }

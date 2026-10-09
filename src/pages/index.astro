@@ -13,8 +13,14 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
   <div class="hero-inner container">
 
     <div class="hero-text">
+      <a class="hero-pill" href="/features">
+        <span class="hero-pill-tag">New</span>
+        <span class="pill-long">Report sites to your data protection authority</span>
+        <span class="pill-short">Report sites to regulators</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
       <h1 class="display">
-        You clicked Reject.<br>They tracked you anyway.
+        You clicked Reject.<br>They tracked you <em class="serif">anyway.</em>
       </h1>
 
       <p class="hero-sub">
@@ -40,7 +46,10 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
     </div>
 
     <div class="hero-visual">
-      <img class="hero-popup" src="/img/popup.png" width="380" height="620" alt="The Datawake popup on a news site: 6 companies tracking you, one of them recording your screen, and cookies rejected for you." />
+      <figure class="frame frame--glow">
+        <span class="frame-tag"><span class="frame-tag-dot"></span>Live on this page</span>
+        <img class="hero-popup" src="/img/popup.png" width="380" height="620" alt="The Datawake popup on a news site: 6 companies tracking you, one of them recording your screen, and cookies rejected for you." />
+      </figure>
     </div>
 
   </div>
@@ -52,7 +61,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
   <div class="container problem-inner">
 
     <div class="problem-text reveal">
-      <h2 class="section-title">Most people have no idea what happens after they click Reject.</h2>
+      <h2 class="section-title two-tone"><span class="hl">Most people have no idea</span> what happens after they click Reject.</h2>
       <p class="lead" style="--lead-gap:20px">
         Cookie banners are supposed to give you a choice. In practice, many sites load advertising scripts, analytics trackers, and data broker pixels regardless of what you clicked, often before the page has even finished loading.
       </p>
@@ -123,7 +132,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
 <section class="section section-alt" id="how">
   <div class="container how-inner">
     <div class="how-header">
-      <h2 class="section-title" style="margin:0 auto 16px; max-width:480px;">Up and running in 60 seconds</h2>
+      <h2 class="section-title two-tone" style="margin:0 auto 16px; max-width:480px;"><span class="hl">Up and running</span> in 60 seconds</h2>
       <p class="section-sub" style="margin:0 auto;">No configuration. No account. No complicated setup. You install it, and it works.</p>
     </div>
 
@@ -153,7 +162,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
     <div class="teaser-grid">
 
       <div class="reveal">
-        <h2 class="section-title">Says no for you. Catches the sites that don&apos;t listen.</h2>
+        <h2 class="section-title two-tone"><span class="hl">Says no for you.</span> Catches the sites that don&apos;t <em class="serif">listen.</em></h2>
         <p class="lead" style="--lead-gap:28px">
           Datawake says no to cookie banners for you, then keeps watching. It names every company loading on the page, shows which ones are sending data right now, and catches the sites that keep tracking you after you said no. For each one it explains what they collect and whether they sell your data.
         </p>
@@ -187,10 +196,13 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
         </a>
       </div>
 
-      <picture class="feature-shot-wrap reveal" style="--delay:80ms">
+      <figure class="frame reveal" style="--delay:80ms">
+        <span class="frame-tag frame-tag--alert"><span class="frame-tag-dot"></span>Caught after Reject</span>
+        <picture class="feature-shot-wrap">
         <source media="(max-width: 600px)" srcset="/img/violation-m.png" width="342" height="621" />
         <img class="feature-shot" src="/img/violation.png" width="1180" height="680" loading="lazy" alt="The Datawake dashboard showing a site that set 4 tracking cookies and fingerprinted the device after the user clicked Reject." />
       </picture>
+      </figure>
 
     </div>
   </div>
@@ -215,7 +227,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
 <!-- ─── PRICING TEASER ───────────────────────────────────────────────── -->
 <section class="section">
   <div class="container" style="text-align:center;">
-    <h2 class="section-title" style="margin-bottom:12px;">Free forever, with a Pro tier for those who want more</h2>
+    <h2 class="section-title two-tone" style="margin-bottom:12px;"><span class="hl">Free forever,</span> with a Pro tier for those who want more</h2>
     <p class="section-sub" style="margin:0 auto 40px;">Core features are always free. No trial, no credit card. Pro tier with deeper tools is coming soon.</p>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
       <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-install>Install free</a>
@@ -229,7 +241,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
   <div class="container guarantee-inner">
 
     <div class="guarantee-header reveal">
-      <h2 class="section-title">Privacy tools should be trustworthy by design, not by promise</h2>
+      <h2 class="section-title two-tone two-tone--dark"><span class="hl">Privacy tools should be trustworthy</span> by design, not by <em class="serif">promise.</em></h2>
       <p class="section-sub" style="margin:0 auto; color:rgba(255,255,255,0.72);">
         Everything Datawake records stays on your device. The code is open source. There is no account, no telemetry, and nothing sent to our servers.
       </p>
