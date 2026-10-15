@@ -80,23 +80,21 @@ const FINGERPRINTS = [
 
 <!-- 2. Catches -->
 <section class="fx-section fx-alt" id="catch">
-  <div class="container fx-split fx-split--rev">
+  <div class="container fx-split">
     <div class="fx-text">
       <p class="fx-kicker">Step 2</p>
       <h2>It checks that the site listened</h2>
-      <p class="lead">Saying no is only half of it. Datawake keeps watching, and if the site tracks you anyway, it keeps the evidence.</p>
+      <p class="lead">Saying no is only half of it. Datawake keeps watching, and if the site tracks you anyway, it keeps the evidence: the cookies, the companies and the time. If you turned notifications on, you hear about it straight away.</p>
+    </div>
+    <div class="fx-timeline-card">
       <ol class="fx-timeline">
         <li><time>14:02:01</time><span>The banner asks to track you.</span></li>
         <li><time>14:02:02</time><span>Datawake clicks Reject and sends "do not sell my data".</span></li>
         <li class="bad"><time>14:02:07</time><span>Google sets <code>_ga</code> and Meta sets <code>_fbp</code> anyway.</span></li>
-        <li class="bad"><time>14:02:08</time><span>Recorded as a violation, with the cookies, the companies and the time. If you turned notifications on, you hear about it straight away.</span></li>
+        <li class="bad"><time>14:02:08</time><span>Recorded as a violation.</span></li>
       </ol>
       <p class="fx-note">Example from a test page.</p>
     </div>
-    <figure class="fx-receipt">
-      <img src="/img/features/receipt.png" width="640" height="640" loading="lazy" alt="A Datawake receipt: example-news.com tracked you after you clicked Reject, with 4 tracking cookies and 1 fingerprinting script." />
-      <figcaption>Every violation comes with a receipt you can share.</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -294,7 +292,6 @@ if (demo) {
 .fx-section h2 { font-size: clamp(26px, 3.4vw, 38px); color: var(--navy); margin-bottom: 14px; line-height: 1.15; }
 .fx-head { max-width: 640px; margin-bottom: 40px; }
 .fx-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-.fx-split--rev .fx-text { order: 2; }
 .fx-note { font-size: 13px; color: var(--text-muted); margin-top: 16px; }
 
 /* ── 1. Facts + banner demo ── */
@@ -339,7 +336,7 @@ if (demo) {
 .fx-choice h3 { font-size: 20px; color: var(--navy); margin-bottom: 8px; }
 .fx-choice p { color: var(--text-soft); line-height: 1.6; max-width: 460px; }
 
-/* ── 2. Timeline + receipt ── */
+/* ── 2. Timeline ── */
 .fx-timeline { list-style: none; margin-top: 24px; display: flex; flex-direction: column; }
 .fx-timeline li { display: grid; grid-template-columns: 76px 1fr; gap: 14px; padding: 12px 0; border-top: 1px solid var(--border); font-size: 15px; color: var(--text-soft); line-height: 1.5; }
 .fx-timeline li:first-child { border-top: 0; }
@@ -347,9 +344,8 @@ if (demo) {
 .fx-timeline li.bad span { color: var(--navy); }
 .fx-timeline li.bad time { color: var(--danger); }
 .fx-timeline code { font-size: 13px; background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 1px 5px; }
-.fx-receipt { margin: 0; text-align: center; }
-.fx-receipt img { width: 100%; max-width: 420px; height: auto; border-radius: 16px; }
-.fx-receipt figcaption { font-size: 14px; color: var(--text-soft); margin-top: 10px; }
+.fx-timeline-card { padding: 24px 28px; border-radius: 20px; background: var(--surface); border: 1px solid var(--border); }
+.fx-timeline-card .fx-timeline { margin-top: 0; }
 
 /* ── 3. Before / after ── */
 .fx-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -401,7 +397,6 @@ if (demo) {
 @media (max-width: 900px) {
   .fx-split, .fx-compare, .fx-docs, .fx-privacy { grid-template-columns: 1fr; }
   .fx-split { gap: 36px; }
-  .fx-split--rev .fx-text { order: 0; }
   .fx-grid { grid-template-columns: 1fr; }
   .fx-tile--tall { grid-row: auto; }
   .fx-tile--tall img { max-width: 320px; margin: 0 auto; }
