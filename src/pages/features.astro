@@ -67,7 +67,6 @@ const FINGERPRINTS = [
           <div class="fx-toast" role="status"><span class="fx-dot"></span>Rejected for you</div>
         </div>
       </div>
-      <button class="fx-replay" type="button">Play again</button>
     </div>
   </div>
   <div class="container"><div class="fx-choice">
@@ -246,21 +245,30 @@ const io = new IntersectionObserver((entries) => {
 }, { rootMargin: '-45% 0px -50% 0px' });
 sections.forEach((s) => io.observe(s));
 
-// Banner demo: plays once when it first comes into view; "Play again" replays it.
+// Banner demo: loops while on screen (banner, Reject, "Rejected for you", pause, repeat).
 const demo = document.getElementById('banner-demo');
 if (demo) {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const CYCLE_MS = 5200; // 2.6s animation + time to read the result
+  let timer: number | undefined;
   const play = () => {
-    demo.classList.remove('played', 'playing');
+    demo.classList.remove('playing');
     void demo.offsetWidth; // restart the animation
-    demo.classList.add(reduce ? 'played' : 'playing');
+    demo.classList.add('playing');
   };
-  const once = new IntersectionObserver((entries) => {
-    // A short pause first, so the banner is seen before Datawake answers it.
-    if (entries.some((e) => e.isIntersecting)) { setTimeout(play, 900); once.disconnect(); }
-  }, { threshold: 0.5 });
-  once.observe(demo);
-  demo.querySelector('.fx-replay')?.addEventListener('click', play);
+  if (reduce) demo.classList.add('played');
+  else {
+    new IntersectionObserver((entries) => {
+      const visible = entries.some((e) => e.isIntersecting);
+      if (visible && timer === undefined) {
+        play();
+        timer = window.setInterval(play, CYCLE_MS);
+      } else if (!visible && timer !== undefined) {
+        window.clearInterval(timer);
+        timer = undefined;
+      }
+    }, { threshold: 0.4 }).observe(demo);
+  }
 }
 </script>
 
@@ -313,10 +321,8 @@ if (demo) {
   background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l16 9-7 2-3 7z' fill='%231a2340' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E"); }
 .fx-toast { position: absolute; left: 50%; bottom: 24px; transform: translate(-50%, 8px); display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 13px; font-weight: 600; opacity: 0; white-space: nowrap; }
 .fx-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-.fx-replay { border: 0; background: transparent; color: var(--text-soft); font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; padding: 6px; }
-.fx-replay:hover { color: var(--navy); }
 
-/* Played once: cursor moves to Reject, presses it, the banner closes and a confirmation shows. */
+/* One cycle: cursor moves to Reject, presses it, the banner closes and a confirmation shows. */
 .fx-demo.playing .fx-cursor { animation: fxCursor 1.6s ease forwards; }
 .fx-demo.playing .fx-btn-reject { animation: fxPress 1.6s ease forwards; }
 .fx-demo.playing .fx-banner { animation: fxBanner 2.2s ease forwards; }
