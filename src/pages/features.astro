@@ -2,527 +2,220 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { INSTALL_CHROME } from '../lib/links';
+import { INSTALL_CHROME, GITHUB, RELEASES } from '../lib/links';
+
+const STEPS = [
+  { id: 'say-no', n: 1, label: 'Says no' },
+  { id: 'catch', n: 2, label: 'Catches' },
+  { id: 'protect', n: 3, label: 'Protects' },
+  { id: 'show', n: 4, label: 'Shows' },
+  { id: 'act', n: 5, label: 'Helps you act' },
+];
+
+// Real output of the same fingerprinting script on three test sites (see datawake-internal QA).
+const FINGERPRINTS = [
+  { site: 'example-news.com', off: '5978a1b6', on: '7625ecd6' },
+  { site: 'example-shop.com', off: '5978a1b6', on: '70aafa0d' },
+  { site: 'example-travel.com', off: '5978a1b6', on: '1f63c5e8' },
+];
 ---
 <Base
   title="Features · Datawake"
-  description="Everything Datawake shows you: real-time tracker detection, cross-site tracking, data broker exposure, breach checks, and more."
+  description="What Datawake does on every website you visit: says no to cookie banners, catches sites that keep tracking you, protects you from fingerprinting and helps you act."
 >
 
 <Nav />
 
-<!-- ─── HERO ──────────────────────────────────────────────────────────── -->
-<div class="feat-hero">
+<header class="fx-hero">
   <div class="container">
-    <h1 class="reveal" style="--delay:60ms">Features</h1>
-    <p class="feat-hero-sub reveal" style="--delay:120ms">
-      Says no to cookie banners for you, catches the sites that keep tracking you, and shows who is tracking you right now. Everything stays on your device.
-    </p>
+    <h1>What happens when you visit a website</h1>
+    <p class="fx-hero-sub">A cookie banner asks to track you. Here is what Datawake does next, step by step.</p>
   </div>
-</div>
+</header>
 
-<!-- ─── SECTIONS ──────────────────────────────────────────────────────── -->
-<div class="feat-sections">
+<nav class="fx-steps" aria-label="Steps">
+  <div class="container fx-steps-inner">
+    {STEPS.map((s) => (
+      <a class="fx-step" href={`#${s.id}`} data-step={s.id}><span class="fx-step-n">{s.n}</span>{s.label}</a>
+    ))}
+  </div>
+</nav>
 
-    <!-- PANEL 1: Real-time monitoring -->
-    <div class="feat-panel cat-blue">
-      <div class="panel-split">
-
-        <div class="panel-left">
-          <h2>See who's on a page the second it loads</h2>
-          <p class="panel-desc">Every website you visit loads invisible third-party scripts in the background. Datawake catches them as they appear and shows you exactly who's there.</p>
-
-          <div class="feat-list">
-            <div class="feat-item cat-blue">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Tracker detection on every page</div>
-                <div class="feat-item-desc">Every third-party company loading in the background, identified the moment you land on a site.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-blue">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Company names, not domain names</div>
-                <div class="feat-item-desc">You see "Google (Alphabet)", not "doubleclick.net". The actual company, in plain language.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-blue">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">What each tracker actually does</div>
-                <div class="feat-item-desc">Showing you ads, watching what you do, recording your screen or linking to your social accounts, with a high, medium or low risk level.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-blue">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Who is active right now</div>
-                <div class="feat-item-desc">The popup updates live and marks the companies sending data at this moment, so you see tracking as it happens.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-blue">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Fingerprint protection</div>
-                <div class="feat-item-desc">Optional: Datawake adds tiny, invisible changes to what fingerprinting scripts read, so your fingerprint is different on every site and can&apos;t follow you.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel-right">
-          <img class="hero-popup" src="/img/popup.png" width="380" height="620" loading="lazy" alt="The Datawake popup: companies tracking you on this site, grouped by what they do, with the ones active now marked." />
-        </div>
-
-      </div>
+<!-- 1. Says no -->
+<section class="fx-section" id="say-no">
+  <div class="container fx-split">
+    <div class="fx-text">
+      <p class="fx-kicker">Step 1</p>
+      <h2>Datawake says no for you</h2>
+      <p class="lead">The moment a cookie banner appears, Datawake clicks Reject and sends the Global Privacy Control signal. You don't have to do anything.</p>
+      <ul class="fx-facts">
+        <li><strong>18 consent platforms</strong><span>Including OneTrust, Didomi, Cookiebot, Sourcepoint and TrustArc, plus a careful fallback for the rest.</span></li>
+        <li><strong>Never pays for you</strong><span>If a site only lets you refuse by subscribing, Datawake tells you and leaves the choice to you.</span></li>
+        <li><strong>Honest when it can't</strong><span>If there is nothing it can safely click, the popup says so, and you can report the banner in one tap.</span></li>
+      </ul>
     </div>
-
-    <!-- PANEL 2: Violation detection -->
-    <div class="feat-panel cat-red">
-      <div class="panel-split">
-
-        <div class="panel-left">
-          <h2>Catch sites that track you after you click Reject</h2>
-          <p class="panel-desc">Datawake declines cookie banners for you, then checks what happens next. New tracking cookies from known ad and analytics companies, and fingerprinting scripts, are flagged as violations with a full receipt.</p>
-
-          <div class="feat-list">
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.29 3.86-8.22 14.24A2 2 0 0 0 3.77 21h16.46a2 2 0 0 0 1.7-3.1L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Says no for you</div>
-                <div class="feat-item-desc">Datawake clicks Reject on cookie banners from the major consent platforms and sends the Global Privacy Control signal. Nothing to set up.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Catches tracking after Reject</div>
-                <div class="feat-item-desc">If a site sets tracking cookies or fingerprints your device after you said no, it is logged with the cookie names, the companies and the time.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Report it, or share it</div>
-                <div class="feat-item-desc">Send a complaint to your data protection authority, written from the evidence, or share a receipt of what you caught.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m10.5 8.5 5 3.5-5 3.5z"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Pay to refuse, flagged</div>
-                <div class="feat-item-desc">Some sites only let you refuse tracking if you subscribe. Datawake tells you instead of deciding for you, including when Reject quietly leads to a pay wall.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Notified when it happens</div>
-                <div class="feat-item-desc">Turn on notifications and Datawake tells you the moment a site keeps tracking you after you said no.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Tells you when it couldn&apos;t help</div>
-                <div class="feat-item-desc">If a banner has nothing Datawake can safely click, the popup says so, and you can report it in one tap so we can support it.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Your choice on each site</div>
-                <div class="feat-item-desc">Trust a site and want to handle its banner yourself? Turn off rejecting there with one click. Datawake still shows who tracks you.</div>
-              </div>
-            </div>
+    <div class="fx-demo" id="banner-demo" aria-label="Demonstration: Datawake rejects a cookie banner">
+      <div class="fx-browser">
+        <div class="fx-browser-bar"><span></span><span></span><span></span><em>example-news.com</em></div>
+        <div class="fx-browser-page">
+          <div class="fx-skel w60"></div><div class="fx-skel w90"></div><div class="fx-skel w80"></div><div class="fx-skel w40"></div>
+          <div class="fx-banner">
+            <p>We and our 1,654 partners use cookies to personalise ads.</p>
+            <div class="fx-banner-btns"><span class="fx-btn-accept">Accept all</span><span class="fx-btn-reject">Reject all</span></div>
           </div>
+          <div class="fx-cursor" aria-hidden="true"></div>
+          <div class="fx-toast" role="status"><span class="fx-dot"></span>Rejected for you</div>
         </div>
-
-        <div class="panel-right">
-          <div class="panel-preview cat-red">
-            <div class="pp-bar">
-              <span class="pp-title">Violation detected</span>
-              <span class="pp-risk-badge" style="background:rgba(239,68,68,0.15);color:#f87171">AFTER REJECT</span>
-            </div>
-            <div class="pp-risk-row" style="color:#f87171">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#f87171"><path d="m10.29 3.86-8.22 14.24A2 2 0 0 0 3.77 21h16.46a2 2 0 0 0 1.7-3.1L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-              <span>You clicked Reject. This site set 3 tracking cookies anyway.</span>
-            </div>
-            <div class="pp-divider"></div>
-            <div class="pp-section-label">Cookies set after Reject</div>
-            <div class="pp-breach-item" style="border-bottom:1px solid rgba(255,255,255,0.05)">
-              <div class="pp-breach-name" style="font-family:monospace;font-size:11px">_fbp</div>
-              <div class="pp-breach-date">facebook.com</div>
-            </div>
-            <div class="pp-breach-item" style="border-bottom:1px solid rgba(255,255,255,0.05)">
-              <div class="pp-breach-name" style="font-family:monospace;font-size:11px">_gcl_au</div>
-              <div class="pp-breach-date">google.com</div>
-            </div>
-            <div class="pp-breach-item">
-              <div class="pp-breach-name" style="font-family:monospace;font-size:11px">_tt_enable_cookie</div>
-              <div class="pp-breach-date">tiktok.com</div>
-            </div>
-            <div class="pp-footer">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Stored locally · Logged with timestamp
-            </div>
-          </div>
-        </div>
-
       </div>
+      <button class="fx-replay" type="button">Play again</button>
     </div>
-
-    <!-- PANEL 3: Digital footprint -->
-    <div class="feat-panel cat-violet">
-      <div class="panel-split">
-
-        <div class="panel-left">
-          <h2>90 days of your tracking history, stored locally</h2>
-          <p class="panel-desc">Datawake keeps a rolling record of every company that has tracked you across every site you visit. It stays on your device. Nobody else can see it.</p>
-
-          <div class="feat-list">
-            <div class="feat-item cat-violet">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">90-day browsing summary</div>
-                <div class="feat-item-desc">Sites visited, unique companies that tracked you, and total tracker connections over the last three months.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-violet">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Who follows you across the web</div>
-                <div class="feat-item-desc">Some companies appear on dozens of sites. See which ones follow you everywhere and how many times they've seen you.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-violet">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Tracking by category</div>
-                <div class="feat-item-desc">How much advertising vs. analytics vs. social tracking you're receiving. See where the concentration is.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-violet">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Ad interest profile</div>
-                <div class="feat-item-desc">The categories that advertisers are likely assigning to you based on your browsing. The profile they use to decide which ads you see.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel-right">
-          <div class="panel-preview cat-violet">
-            <div class="pp-bar">
-              <span class="pp-title">Your 90-day overview</span>
-            </div>
-            <div class="pp-stats-row">
-              <div class="pp-stat">
-                <span class="pp-stat-num">142</span>
-                <span class="pp-stat-label">sites visited</span>
-              </div>
-              <div class="pp-stat">
-                <span class="pp-stat-num">38</span>
-                <span class="pp-stat-label">companies</span>
-              </div>
-              <div class="pp-stat">
-                <span class="pp-stat-num">1.2k</span>
-                <span class="pp-stat-label">connections</span>
-              </div>
-            </div>
-            <div class="pp-divider"></div>
-            <div class="pp-section-label">Who follows you most</div>
-            <div class="pp-bar-row">
-              <span class="pp-bar-name">Google</span>
-              <div class="pp-bar-track"><div class="pp-bar-fill" style="width:88%; background:var(--cat-violet)"></div></div>
-              <span class="pp-bar-count">89</span>
-            </div>
-            <div class="pp-bar-row">
-              <span class="pp-bar-name">Meta</span>
-              <div class="pp-bar-track"><div class="pp-bar-fill" style="width:66%; background:var(--cat-violet)"></div></div>
-              <span class="pp-bar-count">67</span>
-            </div>
-            <div class="pp-bar-row">
-              <span class="pp-bar-name">DoubleClick</span>
-              <div class="pp-bar-track"><div class="pp-bar-fill" style="width:44%; background:var(--cat-violet)"></div></div>
-              <span class="pp-bar-count">45</span>
-            </div>
-            <div class="pp-bar-row">
-              <span class="pp-bar-name">LinkedIn</span>
-              <div class="pp-bar-track"><div class="pp-bar-fill" style="width:28%; background:var(--cat-violet)"></div></div>
-              <span class="pp-bar-count">29</span>
-            </div>
-            <div class="pp-footer">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-              Stored locally · 90-day rolling window
-            </div>
-          </div>
-        </div>
-
-      </div>
+  </div>
+  <div class="container"><div class="fx-choice">
+    <img src="/img/features/popup-menu.png" width="380" height="300" loading="lazy" alt="The popup's Site settings menu with two switches: Reject cookie banners here, and Watch this site." />
+    <div>
+      <h3>Your choice on every site</h3>
+      <p>Trust a site and prefer to handle its banner yourself? Turn off rejecting there in one click. Datawake keeps showing you who tracks you.</p>
     </div>
+  </div></div>
+</section>
 
-    <!-- PANEL 3: Data flow -->
-    <div class="feat-panel cat-amber">
-      <div class="panel-split">
-
-        <div class="panel-left">
-          <h2>Not just who tracked you. Where your data went.</h2>
-          <p class="panel-desc">Trackers aren't all the same. Some companies use your data internally. Others sell it. Datawake shows you the difference, and flags data brokers when they're watching.</p>
-
-          <div class="feat-list">
-            <div class="feat-item cat-amber">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">What companies do with your data</div>
-                <div class="feat-item-desc">Internal use, shared with partners, or sold to brokers. Datawake classifies each tracker so you know what actually happens to your data.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-amber">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Data broker identification</div>
-                <div class="feat-item-desc">Data brokers buy and sell personal information as their primary business. Datawake highlights when one is watching your browsing.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-amber">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Filter by who sells your data</div>
-                <div class="feat-item-desc">See every broker and exchange whose trackers loaded on sites you visited, and which companies share your data for ads.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-amber">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Full broker report <span class="pro-badge">Pro</span></div>
-                <div class="feat-item-desc">30+ known data brokers, whether they've seen your browsing, and what data categories they trade in.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel-right">
-          <div class="panel-preview cat-amber">
-            <div class="pp-bar">
-              <span class="pp-title">Data broker exposure</span>
-              <span class="pp-risk-badge">HIGH RISK</span>
-            </div>
-            <div class="pp-risk-row">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              <span>3 brokers have seen your browsing this month</span>
-            </div>
-            <div class="pp-divider"></div>
-            <div class="pp-broker-row">
-              <div class="pp-binfo">
-                <div class="pp-bname">Acxiom</div>
-                <div class="pp-bcat">People data, consumer profiles</div>
-              </div>
-              <span class="pp-btype pp-sells">Sells</span>
-            </div>
-            <div class="pp-broker-row">
-              <div class="pp-binfo">
-                <div class="pp-bname">LiveRamp</div>
-                <div class="pp-bcat">Identity resolution</div>
-              </div>
-              <span class="pp-btype pp-shares">Shares</span>
-            </div>
-            <div class="pp-broker-row">
-              <div class="pp-binfo">
-                <div class="pp-bname">Oracle DaaS</div>
-                <div class="pp-bcat">Audience segments</div>
-              </div>
-              <span class="pp-btype pp-sells">Sells</span>
-            </div>
-            <div class="pp-broker-more">+ 27 more brokers in full report</div>
-            <div class="pp-footer">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Full report available with Pro
-            </div>
-          </div>
-        </div>
-
-      </div>
+<!-- 2. Catches -->
+<section class="fx-section fx-alt" id="catch">
+  <div class="container fx-split fx-split--rev">
+    <div class="fx-text">
+      <p class="fx-kicker">Step 2</p>
+      <h2>It checks that the site listened</h2>
+      <p class="lead">Saying no is only half of it. Datawake keeps watching, and if the site tracks you anyway, it keeps the evidence.</p>
+      <ol class="fx-timeline">
+        <li><time>14:02:01</time><span>The banner asks to track you.</span></li>
+        <li><time>14:02:02</time><span>Datawake clicks Reject and sends "do not sell my data".</span></li>
+        <li class="bad"><time>14:02:07</time><span>Google sets <code>_ga</code> and Meta sets <code>_fbp</code> anyway.</span></li>
+        <li class="bad"><time>14:02:08</time><span>Recorded as a violation, with the cookies, the companies and the time. If you turned notifications on, you hear about it straight away.</span></li>
+      </ol>
+      <p class="fx-note">Example from a test page.</p>
     </div>
+    <figure class="fx-receipt">
+      <img src="/img/features/receipt.png" width="640" height="640" loading="lazy" alt="A Datawake receipt: example-news.com tracked you after you clicked Reject, with 4 tracking cookies and 1 fingerprinting script." />
+      <figcaption>Every violation comes with a receipt you can share.</figcaption>
+    </figure>
+  </div>
+</section>
 
-    <!-- PANEL 4: Breach check -->
-    <div class="feat-panel cat-red">
-      <div class="panel-split">
-
-        <div class="panel-left">
-          <h2>Check if your email has been in a breach</h2>
-          <p class="panel-desc">Billions of credentials have been exposed in publicly known data breaches. Datawake checks your email against a database of known breaches and tells you exactly which services exposed your data and what was leaked.</p>
-
-          <div class="feat-list">
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Email breach lookup</div>
-                <div class="feat-item-desc">Check any email right here on this website, or in the extension. Nothing to set up. <a href="/check" style="color:var(--cat-red); font-weight:600;">Try it now</a></div>
-              </div>
-            </div>
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">What was leaked in each breach</div>
-                <div class="feat-item-desc">Passwords, email addresses, phone numbers, payment info. You see exactly what was exposed, not just which company was hit.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Your email never reaches us</div>
-                <div class="feat-item-desc">The lookup goes straight from your browser to the breach database. Datawake never sees or stores your email address.</div>
-              </div>
-            </div>
-            <div class="feat-item cat-red">
-              <div class="feat-item-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-              </div>
-              <div>
-                <div class="feat-item-name">Weekly breach alerts <span class="pro-badge">Pro</span></div>
-                <div class="feat-item-desc">Get an email the moment a new breach contains your address. You find out quickly, not months later.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel-right">
-          <div class="panel-preview cat-red">
-            <div class="pp-bar">
-              <span class="pp-title">Breach check results</span>
-            </div>
-            <div class="pp-breach-email">you@example.com</div>
-            <div class="pp-breach-summary">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-              Found in 3 breaches
-            </div>
-            <div class="pp-divider"></div>
-            <div class="pp-breach-item">
-              <div class="pp-breach-name">LinkedIn</div>
-              <div class="pp-breach-date">June 2021</div>
-              <div class="pp-breach-chips">
-                <span class="pp-chip">Emails</span>
-                <span class="pp-chip">Passwords</span>
-                <span class="pp-chip">Phone numbers</span>
-              </div>
-            </div>
-            <div class="pp-breach-item">
-              <div class="pp-breach-name">Adobe</div>
-              <div class="pp-breach-date">October 2013</div>
-              <div class="pp-breach-chips">
-                <span class="pp-chip">Emails</span>
-                <span class="pp-chip">Passwords</span>
-                <span class="pp-chip">Payment info</span>
-              </div>
-            </div>
-            <div class="pp-footer">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-              Datawake never saw your email
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-</div>
-
-<!-- ─── COMING SOON ────────────────────────────────────────────────────── -->
-<section class="section section-alt">
+<!-- 3. Protects -->
+<section class="fx-section" id="protect">
   <div class="container">
-    <div class="coming-header reveal">
-      <div>
-        <h2 class="section-title" style="margin-bottom:8px;">What we're building next</h2>
-        <p style="font-size:16px; color:var(--text-soft); max-width:480px; line-height:1.7;">In active development. If any of these matter to you, let us know.</p>
-      </div>
-      <a href="mailto:hello@datawake.app" class="btn btn-outline">Share feedback</a>
+    <div class="fx-head">
+      <p class="fx-kicker">Step 3</p>
+      <h2>It protects you from what cookies can't stop</h2>
+      <p class="lead">Fingerprinting identifies your device without cookies, so rejecting them doesn't help. Datawake shows you who tries it, and can stop it from following you.</p>
     </div>
+    <div class="fx-compare">
+      <div class="fx-compare-col">
+        <h3>Without protection</h3>
+        <p>The same ID on every site, so you can be followed.</p>
+        <table>
+          <tbody>
+            {FINGERPRINTS.map((f) => <tr><td>{f.site}</td><td class="same"><code>{f.off}</code></td></tr>)}
+          </tbody>
+        </table>
+      </div>
+      <div class="fx-compare-col good">
+        <h3>With Datawake's protection</h3>
+        <p>A different ID on every site, so it can't connect your visits.</p>
+        <table>
+          <tbody>
+            {FINGERPRINTS.map((f) => <tr><td>{f.site}</td><td><code>{f.on}</code></td></tr>)}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="fx-note">Real values from the same fingerprinting script on three test sites. Protection is optional: turn it on in Settings. The changes are invisible and stay the same within a page, so sites keep working.</p>
+  </div>
+</section>
 
-    <div class="coming-grid">
-      <div class="coming-card-v2 reveal" style="--delay:0ms">
-        <div class="coming-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-        <h3>Mobile app</h3>
-        <p>Your tracking data on iOS and Android. Breach alerts on your phone.</p>
-      </div>
-      <div class="coming-card-v2 reveal" style="--delay:70ms">
-        <div class="coming-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <h3>Weekly privacy score</h3>
-        <p>A single number, 0 to 100, summing up your week's tracking exposure.</p>
-      </div>
-      <div class="coming-card-v2 reveal" style="--delay:140ms">
-        <div class="coming-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-        <h3>Automatic opt-out requests</h3>
-        <p>Send data deletion requests to brokers in one click under CCPA and GDPR.</p>
-      </div>
-      <div class="coming-card-v2 reveal" style="--delay:210ms">
-        <div class="coming-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
-        <h3>Site privacy ratings</h3>
-        <p>See a site's tracker load before you visit. Compare it to similar sites.</p>
-      </div>
+<!-- 4. Shows -->
+<section class="fx-section fx-alt" id="show">
+  <div class="container">
+    <div class="fx-head">
+      <p class="fx-kicker">Step 4</p>
+      <h2>It shows you who is watching</h2>
+      <p class="lead">On the site you're on, and across everything you've visited.</p>
+    </div>
+    <div class="fx-grid">
+      <figure class="fx-tile fx-tile--tall">
+        <img src="/img/features/popup.png" width="380" height="620" loading="lazy" alt="The Datawake popup: 6 companies tracking you on this site, grouped by what they do, with the ones sending data right now marked." />
+        <figcaption><strong>Right now.</strong> Every company on the page, what it does and whether it's sending data at this moment.</figcaption>
+      </figure>
+      <figure class="fx-tile">
+        <img src="/img/features/sites.png" width="1180" height="680" loading="lazy" alt="The Sites view: each site with what happened there, such as tracked after Reject, pay to refuse or fingerprinted you." />
+        <figcaption><strong>Every site.</strong> What happened where: rejected for you, pay to refuse, fingerprinted, or tracked after Reject.</figcaption>
+      </figure>
+      <figure class="fx-tile">
+        <img src="/img/features/companies.png" width="1180" height="680" loading="lazy" alt="The Companies view filtered to companies that sell your data." />
+        <figcaption><strong>Every company.</strong> Who tracked you, and which of them sell or share your data.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<!-- ─── CTA ───────────────────────────────────────────────────────────── -->
-<section class="section" style="text-align:center;">
-  <div class="container" style="max-width:520px;">
-    <h2 class="section-title reveal" style="margin-bottom:12px;">Start with the free plan</h2>
-    <p class="reveal" style="--delay:60ms; font-size:17px; color:var(--text-soft); margin-bottom:32px; line-height:1.7;">
-      Every feature above without a Pro badge is free, forever, with no time limit.
-    </p>
-    <div class="reveal" style="--delay:120ms; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-install>Install free</a>
-      <a href="/pricing" class="btn btn-outline btn-lg">See pricing</a>
+<!-- 5. Helps you act -->
+<section class="fx-section" id="act">
+  <div class="container">
+    <div class="fx-head">
+      <p class="fx-kicker">Step 5</p>
+      <h2>It helps you do something about it</h2>
+      <p class="lead">Datawake writes the paperwork from what it recorded. You read it, change anything you like, and send it yourself.</p>
     </div>
+    <div class="fx-docs">
+      <article class="fx-doc">
+        <h3>Report the site</h3>
+        <p>A complaint to the data protection authority where you live, built from the evidence.</p>
+        <div class="fx-paper" aria-hidden="true">
+          <p class="fx-paper-subject">Complaint: example-news.com set tracking cookies after I refused consent</p>
+          <p>To Commission nationale de l'informatique et des libertés (CNIL),</p>
+          <p>I would like to report the website example-news.com. On 1 October 2026, I refused consent on the site's cookie banner…</p>
+        </div>
+      </article>
+      <article class="fx-doc">
+        <h3>Ask what they hold</h3>
+        <p>A ready GDPR letter asking a company for a copy of your data, or to delete it.</p>
+        <div class="fx-paper" aria-hidden="true">
+          <p class="fx-paper-subject">Data Subject Access Request (GDPR Art. 15)</p>
+          <p>To the Data Protection Officer / Privacy Team at Criteo,</p>
+          <p>I am exercising my right of access under Article 15 of the GDPR…</p>
+        </div>
+      </article>
+      <article class="fx-doc">
+        <h3>Check your email</h3>
+        <p>See whether your email address appears in a known data breach, and what leaked.</p>
+        <a class="btn btn-primary fx-doc-btn" href="/check">Check my email</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Privacy -->
+<section class="fx-section fx-alt">
+  <div class="container">
+    <div class="fx-head">
+      <h2>Built so we never see your data</h2>
+    </div>
+    <div class="fx-privacy">
+      <div><h3>What Datawake sees</h3><p>The companies a page connects to, its cookie names, and the scripts that read your device. It needs this to do its job.</p></div>
+      <div><h3>What it keeps</h3><p>A history in your own browser, deleted after 90 days. Violations stay until you clear them, so you keep the evidence.</p></div>
+      <div><h3>What leaves your device</h3><p>Nothing, unless you run the email breach check, which looks up only the address you type.</p></div>
+    </div>
+    <p class="fx-privacy-links"><a href={GITHUB} target="_blank" rel="noopener">Read the source code</a> · <a href="/privacy">Privacy policy</a></p>
+  </div>
+</section>
+
+<!-- Closing -->
+<section class="fx-section fx-cta">
+  <div class="container">
+    <h2>Free for Chrome and Firefox</h2>
+    <p class="lead">No account, nothing to set up.</p>
+    <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-install>Install free</a>
+    <p class="fx-roadmap">Coming next: weekly summaries, light mode and more languages. <a href={RELEASES} target="_blank" rel="noopener">Follow releases</a></p>
   </div>
 </section>
 
@@ -530,598 +223,196 @@ import { INSTALL_CHROME } from '../lib/links';
 
 </Base>
 
+<script>
+// Step strip: highlight the step currently on screen.
+const links = [...document.querySelectorAll<HTMLAnchorElement>('.fx-step')];
+const sections = links.map((l) => document.getElementById(l.dataset.step!)).filter(Boolean) as HTMLElement[];
+const setActive = (id: string) => {
+  for (const l of links) {
+    const on = l.dataset.step === id;
+    l.classList.toggle('active', on);
+    if (on) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current');
+  }
+  // On narrow screens the strip scrolls sideways: keep the current step in view.
+  const strip = document.querySelector<HTMLElement>('.fx-steps-inner');
+  const active = links.find((l) => l.dataset.step === id);
+  if (strip && active && strip.scrollWidth > strip.clientWidth) {
+    const left = active.offsetLeft - (strip.clientWidth - active.offsetWidth) / 2;
+    strip.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+  }
+};
+const io = new IntersectionObserver((entries) => {
+  for (const e of entries) if (e.isIntersecting) setActive(e.target.id);
+}, { rootMargin: '-45% 0px -50% 0px' });
+sections.forEach((s) => io.observe(s));
+
+// Banner demo: plays once when it first comes into view; "Play again" replays it.
+const demo = document.getElementById('banner-demo');
+if (demo) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const play = () => {
+    demo.classList.remove('played', 'playing');
+    void demo.offsetWidth; // restart the animation
+    demo.classList.add(reduce ? 'played' : 'playing');
+  };
+  const once = new IntersectionObserver((entries) => {
+    // A short pause first, so the banner is seen before Datawake answers it.
+    if (entries.some((e) => e.isIntersecting)) { setTimeout(play, 900); once.disconnect(); }
+  }, { threshold: 0.5 });
+  once.observe(demo);
+  demo.querySelector('.fx-replay')?.addEventListener('click', play);
+}
+</script>
+
 <style>
-/* ── Hero ─────────────────────────────────────────────────── */
-.feat-hero {
-  padding: 72px 0 48px;
-  border-bottom: 1px solid var(--border);
-}
-
-.feat-hero h1 {
-  font-size: clamp(32px, 5vw, 52px);
-  color: var(--navy);
-  margin-bottom: 16px;
-  max-width: 600px;
-}
-
-.feat-hero-sub {
-  font-size: 18px;
-  color: var(--text-soft);
-  max-width: 520px;
-  line-height: 1.7;
-}
-
-/* ── Tab bar ──────────────────────────────────────────────── */
-.feat-tabs-wrap {
-  position: sticky;
-  top: 64px;
-  z-index: 50;
-  background: rgba(250,251,255,0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 0;
-}
-
-.feat-tabs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-.feat-tab {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 18px 20px;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.2s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.feat-tab::before {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--cat-color);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s ease;
-}
-
-.feat-tab:hover {
-  border-color: rgba(var(--cat-rgb), 0.4);
-  background: rgba(var(--cat-rgb), 0.03);
-}
-
-.feat-tab:hover::before,
-.feat-tab.active::before {
-  transform: scaleX(1);
-}
-
-.feat-tab.active {
-  border-color: rgba(var(--cat-rgb), 0.5);
-  background: rgba(var(--cat-rgb), 0.05);
-  box-shadow: 0 0 0 3px rgba(var(--cat-rgb), 0.08);
-}
-
-.ft-num {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--cat-color);
-  opacity: 0.8;
-}
-
-.ft-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: rgba(var(--cat-rgb), 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--cat-color);
-}
-
-.ft-icon svg { width: 18px; height: 18px; }
-
-.ft-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--navy);
-  line-height: 1.3;
-  font-family: 'DM Sans', sans-serif;
-}
-
-/* ── Panels ───────────────────────────────────────────────── */
-.feat-sections {
-  border-top: 1px solid var(--border);
-}
-
-.feat-panel {
-  display: block;
-  padding: 80px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.feat-panel:nth-child(even) {
-  background: var(--section-alt);
-}
-
-@keyframes panelIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.panel-split {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-
-/* ── Panel left ───────────────────────────────────────────── */
-.panel-cat-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--cat-color);
-  background: rgba(var(--cat-rgb), 0.08);
-  border: 1px solid rgba(var(--cat-rgb), 0.18);
-  padding: 5px 12px;
-  border-radius: 999px;
-  margin-bottom: 20px;
-}
-
-.panel-left h2 {
-  font-size: clamp(24px, 3vw, 36px);
-  color: var(--navy);
-  margin-bottom: 14px;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-}
-
-.panel-desc {
-  font-size: 16px;
-  color: var(--text-soft);
-  line-height: 1.75;
-  margin-bottom: 36px;
-  max-width: 460px;
-}
-
-/* ── Feature list ─────────────────────────────────────────── */
-.feat-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.feat-item {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.15s;
-}
-
-.feat-item:first-child { padding-top: 0; }
-.feat-item:last-child  { border-bottom: none; padding-bottom: 0; }
-
-.feat-item-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: rgba(var(--cat-rgb), 0.09);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--cat-color);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.feat-item-icon svg { width: 18px; height: 18px; }
-
-.feat-item-name {
-  font-size: 14.5px;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-
-.feat-item-desc {
-  font-size: 13.5px;
-  color: var(--text-soft);
-  line-height: 1.6;
-}
-
-/* ── Panel preview (right) ────────────────────────────────── */
-.panel-preview {
-  background: #0d1117;
-  border-radius: 20px;
-  padding: 0;
-  overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.22);
-  position: sticky;
-  top: 148px;
-}
-
-.pp-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  background: #161b22;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.pp-title {
-  font-size: 12px;
-  font-weight: 700;
-  color: #e6edf3;
-  font-family: 'Inter', sans-serif;
-}
-
-.pp-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 6px var(--accent);
-}
-
-.pp-divider {
-  height: 1px;
-  background: rgba(255,255,255,0.06);
-  margin: 0 20px;
-}
-
-.pp-footer {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 12px 20px;
-  font-size: 11px;
-  color: rgba(255,255,255,0.3);
-  background: #161b22;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-
-/* Monitor panel preview */
-.pp-count {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  padding: 16px 20px 12px;
-}
-
-.pp-num {
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--cat-color, var(--accent));
-  font-family: 'DM Sans', sans-serif;
-  letter-spacing: -0.04em;
-}
-
-.cat-blue  .pp-num { color: var(--cat-blue); }
-.cat-red   .pp-num { color: var(--cat-red); }
-
-.pp-label {
-  font-size: 12px;
-  color: rgba(255,255,255,0.4);
-}
-
-.pp-tracker {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  transition: background 0.15s;
-}
-
-.pp-tracker:last-of-type { border-bottom: none; }
-
-.pp-col {
-  width: 3px;
-  height: 32px;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
-.pp-tinfo { flex: 1; min-width: 0; }
-
-.pp-tname {
-  font-size: 12px;
-  font-weight: 600;
-  color: #e6edf3;
-}
-
-.pp-tcat {
-  font-size: 10.5px;
-  color: rgba(255,255,255,0.35);
-  margin-top: 2px;
-}
-
-.pp-badge {
-  font-size: 9px;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: 999px;
-  letter-spacing: 0.05em;
-}
-
-.pp-high { background: rgba(239,68,68,0.15); color: #f87171; }
-.pp-med  { background: rgba(245,158,11,0.15); color: #fbbf24; }
-
-/* Footprint panel preview */
-.pp-stats-row {
-  display: flex;
-  gap: 0;
-  padding: 16px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.pp-stat {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding-right: 16px;
-  border-right: 1px solid rgba(255,255,255,0.06);
-}
-
-.pp-stat:last-child { border-right: none; padding-right: 0; padding-left: 16px; }
-.pp-stat:nth-child(2) { padding-left: 16px; }
-
-.pp-stat-num {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--cat-violet);
-  font-family: 'DM Sans', sans-serif;
-  letter-spacing: -0.03em;
-}
-
-.pp-stat-label {
-  font-size: 10px;
-  color: rgba(255,255,255,0.35);
-}
-
-.pp-section-label {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.3);
-  padding: 12px 20px 8px;
-}
-
-.pp-bar-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 20px;
-}
-
-.pp-bar-name {
-  font-size: 11px;
-  color: rgba(255,255,255,0.55);
-  min-width: 72px;
-}
-
-.pp-bar-track {
-  flex: 1;
-  height: 5px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.pp-bar-fill {
-  height: 100%;
-  border-radius: 99px;
-  opacity: 0.75;
-}
-
-.pp-bar-count {
-  font-size: 11px;
-  color: rgba(255,255,255,0.35);
-  min-width: 24px;
-  text-align: right;
-}
-
-/* Data flow panel preview */
-.pp-risk-badge {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: rgba(245,158,11,0.15);
-  color: #fbbf24;
-}
-
-.pp-risk-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 20px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.5;
-}
-
-.pp-risk-row svg { flex-shrink: 0; color: #fbbf24; margin-top: 1px; }
-
-.pp-broker-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-
-.pp-binfo { flex: 1; }
-
-.pp-bname {
-  font-size: 12px;
-  font-weight: 600;
-  color: #e6edf3;
-}
-
-.pp-bcat {
-  font-size: 10.5px;
-  color: rgba(255,255,255,0.3);
-  margin-top: 2px;
-}
-
-.pp-btype {
-  font-size: 9.5px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 999px;
-  letter-spacing: 0.04em;
-}
-
-.pp-sells  { background: rgba(239,68,68,0.12); color: #f87171; }
-.pp-shares { background: rgba(245,158,11,0.12); color: #fbbf24; }
-
-.pp-broker-more {
-  padding: 10px 20px;
-  font-size: 11px;
-  color: rgba(255,255,255,0.25);
-  font-style: italic;
-}
-
-/* Breach panel preview */
-.pp-breach-email {
-  padding: 12px 20px 4px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #e6edf3;
-  font-family: 'Inter', monospace;
-}
-
-.pp-breach-summary {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 4px 20px 12px;
-  font-size: 12px;
-  color: #f87171;
-}
-
-.pp-breach-summary svg { color: #f87171; }
-
-.pp-breach-item {
-  padding: 12px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.pp-breach-name {
-  font-size: 12px;
-  font-weight: 600;
-  color: #e6edf3;
-  margin-bottom: 2px;
-}
-
-.pp-breach-date {
-  font-size: 10.5px;
-  color: rgba(255,255,255,0.3);
-  margin-bottom: 7px;
-}
-
-.pp-breach-chips {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-
-.pp-chip {
-  font-size: 10px;
-  padding: 2px 7px;
-  background: rgba(239,68,68,0.1);
-  color: rgba(248,113,113,0.85);
-  border-radius: 999px;
-}
-
-/* ── Coming soon ──────────────────────────────────────────── */
-.coming-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-
-.coming-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-/* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .panel-split { gap: 40px; }
+/* ── Hero and step strip ── */
+.fx-hero { padding: 72px 0 32px; }
+.fx-hero h1 { font-size: clamp(32px, 5vw, 52px); color: var(--navy); max-width: 720px; margin-bottom: 14px; }
+.fx-hero-sub { font-size: 18px; color: var(--text-soft); max-width: 560px; line-height: 1.6; }
+
+.fx-steps { position: sticky; top: 64px; z-index: 40; background: rgba(250, 251, 255, 0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.fx-steps-inner { display: flex; gap: 6px; padding-top: 10px; padding-bottom: 10px; overflow-x: auto; scrollbar-width: none; }
+.fx-steps-inner::-webkit-scrollbar { display: none; }
+.fx-step { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border-radius: 999px; color: var(--text-soft); text-decoration: none; font-size: 14px; font-weight: 500; white-space: nowrap; transition: background var(--t), color var(--t); }
+.fx-step:hover { color: var(--navy); background: var(--surface); }
+.fx-step-n { width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; background: var(--section-alt); color: var(--text-soft); }
+.fx-step.active { color: var(--navy); background: var(--surface); box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06); }
+.fx-step.active .fx-step-n { background: var(--navy); color: #fff; }
+
+/* ── Sections ── */
+.fx-section { padding: 88px 0; scroll-margin-top: 120px; }
+.fx-alt { background: var(--section-alt); }
+.fx-kicker { font-size: 13px; font-weight: 600; color: var(--accent-dark); margin-bottom: 8px; }
+.fx-section h2 { font-size: clamp(26px, 3.4vw, 38px); color: var(--navy); margin-bottom: 14px; line-height: 1.15; }
+.fx-head { max-width: 640px; margin-bottom: 40px; }
+.fx-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.fx-split--rev .fx-text { order: 2; }
+.fx-note { font-size: 13px; color: var(--text-muted); margin-top: 16px; }
+
+/* ── 1. Facts + banner demo ── */
+.fx-facts { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+.fx-facts li { display: flex; flex-direction: column; gap: 2px; padding-left: 16px; border-left: 2px solid var(--accent); }
+.fx-facts strong { color: var(--navy); font-size: 16px; }
+.fx-facts span { color: var(--text-soft); font-size: 15px; line-height: 1.55; }
+
+.fx-demo { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.fx-browser { width: 100%; max-width: 480px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); overflow: hidden; box-shadow: 0 24px 50px -30px rgba(15, 23, 42, 0.35); }
+.fx-browser-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: var(--section-alt); border-bottom: 1px solid var(--border); }
+.fx-browser-bar span { width: 9px; height: 9px; border-radius: 50%; background: #cbd5e1; }
+.fx-browser-bar em { margin-left: 10px; font-style: normal; font-size: 12px; color: var(--text-muted); }
+.fx-browser-page { position: relative; height: 290px; padding: 24px; }
+.fx-skel { height: 12px; border-radius: 6px; background: var(--section-alt); margin-bottom: 12px; }
+.w40 { width: 40%; } .w60 { width: 60%; } .w80 { width: 80%; } .w90 { width: 90%; }
+.fx-banner { position: absolute; left: 16px; right: 16px; bottom: 16px; padding: 16px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); box-shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.3); }
+.fx-banner p { font-size: 14px; color: var(--text); margin-bottom: 12px; }
+.fx-banner-btns { display: flex; gap: 8px; }
+.fx-banner-btns span { padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+.fx-btn-accept { background: var(--navy); color: #fff; }
+.fx-btn-reject { background: var(--surface); border: 1px solid var(--border); color: var(--navy); }
+.fx-cursor { position: absolute; width: 18px; height: 18px; left: 70%; top: 30%; opacity: 0; pointer-events: none;
+  background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l16 9-7 2-3 7z' fill='%231a2340' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E"); }
+.fx-toast { position: absolute; left: 50%; bottom: 24px; transform: translate(-50%, 8px); display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 13px; font-weight: 600; opacity: 0; white-space: nowrap; }
+.fx-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.fx-replay { border: 0; background: transparent; color: var(--text-soft); font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; padding: 6px; }
+.fx-replay:hover { color: var(--navy); }
+
+/* Played once: cursor moves to Reject, presses it, the banner closes and a confirmation shows. */
+.fx-demo.playing .fx-cursor { animation: fxCursor 1.6s ease forwards; }
+.fx-demo.playing .fx-btn-reject { animation: fxPress 1.6s ease forwards; }
+.fx-demo.playing .fx-banner { animation: fxBanner 2.2s ease forwards; }
+.fx-demo.playing .fx-toast { animation: fxToast 2.6s ease forwards; }
+.fx-demo.played .fx-banner { opacity: 0; transform: translateY(12px); }
+.fx-demo.played .fx-toast { opacity: 1; transform: translate(-50%, 0); }
+@keyframes fxCursor { 0% { opacity: 0; left: 70%; top: 30%; } 15% { opacity: 1; } 70% { left: 40%; top: 86%; } 80% { transform: scale(0.85); } 90% { transform: scale(1); opacity: 1; } 100% { left: 40%; top: 86%; opacity: 0; } }
+@keyframes fxPress { 0%, 72% { background: var(--surface); } 78% { background: var(--section-alt); transform: scale(0.96); } 100% { transform: scale(1); } }
+@keyframes fxBanner { 0%, 78% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(12px); } }
+@keyframes fxToast { 0%, 80% { opacity: 0; transform: translate(-50%, 8px); } 100% { opacity: 1; transform: translate(-50%, 0); } }
+
+.fx-choice { display: flex; align-items: center; gap: 32px; margin-top: 64px; padding: 24px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); }
+.fx-choice img { width: 300px; max-width: 45%; height: auto; border-radius: 12px; }
+.fx-choice h3 { font-size: 20px; color: var(--navy); margin-bottom: 8px; }
+.fx-choice p { color: var(--text-soft); line-height: 1.6; max-width: 460px; }
+
+/* ── 2. Timeline + receipt ── */
+.fx-timeline { list-style: none; margin-top: 24px; display: flex; flex-direction: column; }
+.fx-timeline li { display: grid; grid-template-columns: 76px 1fr; gap: 14px; padding: 12px 0; border-top: 1px solid var(--border); font-size: 15px; color: var(--text-soft); line-height: 1.5; }
+.fx-timeline li:first-child { border-top: 0; }
+.fx-timeline time { font-family: ui-monospace, Menlo, monospace; font-size: 13px; color: var(--text-muted); padding-top: 2px; }
+.fx-timeline li.bad span { color: var(--navy); }
+.fx-timeline li.bad time { color: var(--danger); }
+.fx-timeline code { font-size: 13px; background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 1px 5px; }
+.fx-receipt { margin: 0; text-align: center; }
+.fx-receipt img { width: 100%; max-width: 420px; height: auto; border-radius: 16px; }
+.fx-receipt figcaption { font-size: 14px; color: var(--text-soft); margin-top: 10px; }
+
+/* ── 3. Before / after ── */
+.fx-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.fx-compare-col { padding: 28px; border-radius: 20px; background: var(--surface); border: 1px solid var(--border); }
+.fx-compare-col.good { border-color: rgba(5, 150, 105, 0.35); }
+.fx-compare-col h3 { font-size: 18px; color: var(--navy); margin-bottom: 6px; }
+.fx-compare-col > p { color: var(--text-soft); font-size: 15px; margin-bottom: 18px; }
+.fx-compare table { width: 100%; border-collapse: collapse; }
+.fx-compare td { padding: 12px 0; border-top: 1px solid var(--border); font-size: 15px; color: var(--text-soft); }
+.fx-compare td:last-child { text-align: right; }
+.fx-compare code { font-family: ui-monospace, Menlo, monospace; font-size: 14px; padding: 3px 8px; border-radius: 6px; background: rgba(5, 150, 105, 0.1); color: var(--accent-dark); }
+.fx-compare td.same code { background: rgba(239, 68, 68, 0.1); color: #b42318; }
+
+/* ── 4. Screenshot grid ── */
+.fx-grid { display: grid; grid-template-columns: 0.8fr 1.6fr; grid-template-rows: auto auto; gap: 20px; }
+.fx-tile { margin: 0; padding: 12px; border-radius: 20px; background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
+.fx-tile img { width: 100%; height: auto; border-radius: 12px; display: block; }
+.fx-tile--tall { grid-row: span 2; }
+.fx-tile--tall { justify-content: space-between; }
+.fx-tile--tall img { max-width: 340px; margin: 0 auto; }
+.fx-tile figcaption { font-size: 14px; color: var(--text-soft); line-height: 1.5; padding: 0 4px 4px; }
+.fx-tile strong { color: var(--navy); }
+
+/* ── 5. Document cards ── */
+.fx-docs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.fx-doc { padding: 24px; border-radius: 20px; background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; }
+.fx-doc h3 { font-size: 18px; color: var(--navy); margin-bottom: 6px; }
+.fx-doc > p { color: var(--text-soft); font-size: 15px; line-height: 1.55; margin-bottom: 18px; }
+.fx-paper { margin-top: auto; padding: 16px; border-radius: 10px; background: #fbfaf6; border: 1px solid #ece8dc; font-family: ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.6; color: #475569; max-height: 168px; overflow: hidden; -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+.fx-paper p + p { margin-top: 8px; }
+.fx-paper-subject { font-weight: 700; color: var(--navy); }
+.fx-doc-btn { margin-top: auto; align-self: flex-start; }
+
+/* ── Privacy + closing ── */
+.fx-privacy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.fx-privacy h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+.fx-privacy p { color: var(--text-soft); line-height: 1.6; font-size: 15px; }
+.fx-privacy-links { margin-top: 28px; font-size: 15px; }
+.fx-privacy-links a { color: var(--navy); font-weight: 600; }
+.fx-cta { text-align: center; }
+.fx-cta .lead { margin-bottom: 24px; }
+.fx-roadmap { margin-top: 28px; font-size: 14px; color: var(--text-muted); }
+.fx-roadmap a { color: var(--text-soft); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-demo.playing * { animation: none !important; }
 }
 
 @media (max-width: 900px) {
-  .feat-tabs { grid-template-columns: repeat(2, 1fr); }
-  .panel-split { grid-template-columns: 1fr; }
-  .panel-right { order: -1; }
-  .panel-preview { position: static; }
-  .coming-grid { grid-template-columns: repeat(2, 1fr); }
+  .fx-split, .fx-compare, .fx-docs, .fx-privacy { grid-template-columns: 1fr; }
+  .fx-split { gap: 36px; }
+  .fx-split--rev .fx-text { order: 0; }
+  .fx-grid { grid-template-columns: 1fr; }
+  .fx-tile--tall { grid-row: auto; }
+  .fx-tile--tall img { max-width: 320px; margin: 0 auto; }
+  .fx-privacy { gap: 20px; }
 }
 
-@media (max-width: 640px) {
-  .feat-tabs { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .feat-tab { padding: 14px 14px; }
-  .ft-icon { width: 30px; height: 30px; }
-  .ft-icon svg { width: 15px; height: 15px; }
-  .ft-label { font-size: 12px; }
-  .coming-grid { grid-template-columns: 1fr; }
-  .coming-header { flex-direction: column; align-items: flex-start; }
-  .pp-stats-row { flex-direction: column; gap: 12px; }
-  .pp-stat { border-right: none; padding: 0; }
-  .pp-stat:last-child { padding: 0; }
-  .pp-stat:nth-child(2) { padding: 0; }
-}
-
-/* Phone rhythm, matching the homepage: 48px between blocks, 28px from text to its picture,
-   text first so every block reads heading, explanation, then illustration. */
 @media (max-width: 600px) {
-  .feat-hero { padding: 32px 0; }
-  .feat-hero h1 { font-size: clamp(30px, 8vw, 38px); margin-bottom: 12px; }
-  .feat-hero-sub { font-size: 16px; line-height: 1.6; }
-  .feat-panel { padding: 48px 0; }
-  .panel-split { padding: 0 20px; gap: 28px; }
-  .panel-right { order: 0; }
-  .panel-cat-badge { margin-bottom: 14px; }
-  .panel-left h2 { font-size: clamp(24px, 6.6vw, 28px); margin-bottom: 12px; }
-  .panel-desc { font-size: 16px; line-height: 1.6; margin-bottom: 20px; }
-  .feat-item { gap: 14px; padding: 14px 0; }
-  .feat-item-name { font-size: 15px; }
-  .feat-item-desc { font-size: 14px; line-height: 1.55; }
-  .coming-header { margin-bottom: 20px; }
-  .coming-grid { gap: 12px; }
+  .fx-hero { padding: 32px 0 20px; }
+  .fx-hero-sub { font-size: 16px; }
+  .fx-section { padding: 56px 0; }
+  .fx-head { margin-bottom: 24px; }
+  .fx-steps-inner { padding-left: 20px; padding-right: 20px; }
+  .fx-step { min-height: 40px; }
+  .fx-browser-page { height: 250px; padding: 18px; }
+  .fx-choice { flex-direction: column; align-items: flex-start; margin-top: 40px; padding: 18px; gap: 18px; }
+  .fx-choice img { width: 100%; max-width: 340px; }
+  .fx-compare-col, .fx-doc { padding: 20px; }
+  .fx-timeline li { grid-template-columns: 64px 1fr; gap: 10px; font-size: 14px; }
 }
 </style>
-
