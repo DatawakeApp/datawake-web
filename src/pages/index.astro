@@ -4,7 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
 ---
-<Base title="Datawake · Catch sites that track you after you say Reject">
+<Base title="Datawake · Know who's watching. Stop them following you.">
 
 <Nav />
 
@@ -14,18 +14,17 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
 
     <div class="hero-text">
       <h1 class="display">
-        You clicked Reject.<br>They tracked you anyway.
+        Know who's watching.<br>Stop them following you.
       </h1>
 
       <p class="hero-sub">
-        Many sites keep tracking you after you click Reject. That can break privacy law, and almost no one notices.
-        Datawake says no for you, catches the sites that ignore it, and shows you who is tracking you right now.
+        Datawake says no to tracking for you, shows every company watching you, and catches the sites that ignore your choice.
       </p>
 
       <div class="hero-ctas">
         <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-install>
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Add to Chrome, free
+          Add to Chrome for free
         </a>
         <a href={INSTALL_FIREFOX} class="btn btn-outline btn-lg desktop-only" target="_blank" rel="noopener">Add to Firefox</a>
       </div>
@@ -223,7 +222,7 @@ import { INSTALL_CHROME, INSTALL_FIREFOX } from '../lib/links';
     <h2 class="section-title" style="margin-bottom:12px;">Free to use</h2>
     <p class="section-sub" style="margin:0 auto 40px;">Core features are always free. No trial, no credit card. Pro tier with deeper tools is coming soon.</p>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-install>Install free</a>
+      <a href={INSTALL_CHROME} class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-install>Install for free</a>
       <a href="/pricing" class="btn btn-outline btn-lg">Compare plans</a>
     </div>
   </div>
